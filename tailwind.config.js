@@ -1,6 +1,12 @@
 module.exports = {
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
+  purge: {
+    mode: "all",
+    content: ["./src/**/*.tsx"],
+    options: {
+      safelist: ["dark"],
+    },
+  },
+  darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {},
   },
@@ -8,4 +14,4 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-}
+};
