@@ -3,10 +3,11 @@ import app from '../firebase/config';
 
 export const AuthContext = React.createContext({});
 
-export const AuthProvider = ({ children }: { children: any }) => {
-	const [user, setUser] = useState(null);
+const FirebaseProvider: React.FC = ({ children }) => {
+	const [user, setUser]: [user: any, setUser: any] = useState(null);
 
 	useEffect(() => {
+        console.log('user: ', user);
 		app.auth().onAuthStateChanged(setUser);
 	}, []);
 
@@ -16,3 +17,5 @@ export const AuthProvider = ({ children }: { children: any }) => {
 		</AuthContext.Provider>
 	);
 };
+
+export { FirebaseProvider };
