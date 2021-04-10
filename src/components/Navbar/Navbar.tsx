@@ -1,9 +1,9 @@
-import React from "react";
-import useTheme from "../../hooks/useTheme";
-import config from "./config";
+import React from 'react'
+import useTheme from '../../hooks/useTheme'
+import config from './config'
 
 const Navbar: React.FC = () => {
-  const {toggleTheme} = useTheme();
+  const { toggleTheme } = useTheme()
   const links = config.map((item, index) => (
     <a
       href={item.href}
@@ -12,7 +12,7 @@ const Navbar: React.FC = () => {
     >
       {item.label}
     </a>
-  ));
+  ))
 
   return (
     <nav className="border-b-2 border-gray-light dark:border-purple bg-white dark:bg-gray-darkest">
@@ -32,12 +32,7 @@ const Navbar: React.FC = () => {
                 stroke="currentColor"
                 aria-hidden="true"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
               <svg
                 className="hidden h-6 w-6"
@@ -47,20 +42,11 @@ const Navbar: React.FC = () => {
                 stroke="currentColor"
                 aria-hidden="true"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
             <div className="flex-shrink-0 flex items-center">
-              <svg
-                viewBox="0 0 512 512"
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-7"
-              >
+              <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" className="h-7">
                 <linearGradient id="linear-gradient">
                   <stop offset={0} stopColor="#12bee5" />
                   <stop offset=".5" stopColor="#c071e9" />
@@ -71,9 +57,7 @@ const Navbar: React.FC = () => {
                   fill="url(#linear-gradient)"
                 />
               </svg>
-              <span className="ml-1 text-xl font-black text-black dark:text-white hidden lg:block">
-                โชคชนะ
-              </span>
+              <span className="ml-1 text-xl font-black text-black dark:text-white hidden lg:block">โชคชนะ</span>
             </div>
             <div className="hidden sm:block sm:ml-6">
               <div className="flex items-center space-x-4">
@@ -121,9 +105,7 @@ const Navbar: React.FC = () => {
                   <path d="M12 22.9H11.99C11.44 22.9 11 22.46 11 21.91V20.95C11 20.4 11.44 19.96 11.99 19.96H12C12.55 19.96 12.99 20.4 12.99 20.95V21.91C12.99 22.46 12.55 22.9 12 22.9Z" />
                   <path d="M5.66 19.69C5.27 20.08 4.64 20.08 4.25 19.69C3.86 19.3 3.86 18.68 4.24 18.28L4.63 17.89C5.02 17.5 5.65 17.5 6.04 17.89L6.05 17.9C6.43 18.28 6.44 18.91 6.05 19.3L5.66 19.69Z" />
                 </svg>
-                <div className="mx-1 text-xs text-gray dark:text-gray-dark">
-                  /
-                </div>
+                <div className="mx-1 text-xs text-gray dark:text-gray-dark">/</div>
                 <svg
                   className="w-5 fill-current text-gray dark:text-white"
                   xmlns="http://www.w3.org/2000/svg"
@@ -145,7 +127,7 @@ const Navbar: React.FC = () => {
         <div className="flex flex-col px-2 pt-2 pb-3 space-y-1">{links}</div>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

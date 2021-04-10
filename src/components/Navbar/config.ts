@@ -1,20 +1,20 @@
 const config = [
   {
-    label: "หน้าหลัก",
-    href: "/",
+    label: 'หน้าหลัก',
+    href: '/',
   },
   {
-    label: "ซื้อสลาก",
-    href: "/pools",
+    label: 'ซื้อสลาก',
+    href: '/pools',
   },
   {
-    label: "ตรวจสลาก",
-    href: "/check",
+    label: 'ตรวจสลาก',
+    href: '/check',
   },
   {
-    label: "สลากของฉัน",
-    href: "/mylottery",
+    label: 'สลากของฉัน',
+    href: '/mylottery',
   },
-];
+]
 
-export default config;
+export default config

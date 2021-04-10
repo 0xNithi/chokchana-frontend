@@ -1,10 +1,10 @@
-import React from "react";
-import { ThemeProvider } from "./ThemeProvider";
+import React from 'react'
+import { ThemeProvider } from './ThemeProvider'
 
 type Props = {
-  contexts: any;
-  children: React.ReactNode;
-};
+  contexts: any
+  children: React.ReactNode
+}
 
 const ProviderComposer: React.FC<Props> = ({ contexts, children }) =>
   contexts.reduceRight(
@@ -12,11 +12,11 @@ const ProviderComposer: React.FC<Props> = ({ contexts, children }) =>
       React.cloneElement(parent, {
         children: kids,
       }),
-    children
-  );
+    children,
+  )
 
 const ContextProvider: React.FC = ({ children }) => (
   <ProviderComposer contexts={[<ThemeProvider />]}>{children}</ProviderComposer>
-);
+)
 
-export default ContextProvider;
+export default ContextProvider
