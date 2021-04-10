@@ -3,11 +3,11 @@ import useTheme from "../../hooks/useTheme";
 import config from "./config";
 
 const Navbar: React.FC = () => {
-  const { toggleTheme } = useTheme();
+  const {toggleTheme} = useTheme();
   const links = config.map((item, index) => (
     <a
       href={item.href}
-      className="text-black dark:text-gray-300 px-3 py-2 rounded-md text-sm font-medium"
+      className="text-purple-lightest dark:text-purple-light px-3 py-2 rounded-md text-base font-medium"
       key={index}
     >
       {item.label}
@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
   ));
 
   return (
-    <nav className="border-b-2 border-gray-100 dark:bg-gray-800">
+    <nav className="border-b-2 border-gray-light dark:border-purple bg-white dark:bg-gray-darkest">
       <div className="px-2 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
           <div className="flex-1 flex items-stretch justify-start">
@@ -71,13 +71,13 @@ const Navbar: React.FC = () => {
                   fill="url(#linear-gradient)"
                 />
               </svg>
-              <span className="ml-1 text-xl font-semibold text-black dark:text-white hidden lg:block">
+              <span className="ml-1 text-xl font-black text-black dark:text-white hidden lg:block">
                 โชคชนะ
               </span>
             </div>
             <div className="hidden sm:block sm:ml-6">
               <div className="flex items-center space-x-4">
-                <div className="border-l-2 border-gray-100 h-8">
+                <div className="border-l-2 border-purple-light h-8">
                   <span className="sr-only">Vertical line</span>
                 </div>
                 {links}
@@ -87,7 +87,7 @@ const Navbar: React.FC = () => {
           <div className="flex items-center pr-2 sm:pr-0">
             <div className="ml-3 relative">
               <button
-                className="px-4 py-2 text-white bg-blue-400 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                className="px-4 py-1 text-base text-cyan-dark dark:text-cyan font-extrabold bg-gray-light dark:bg-purple flex rounded-full focus:outline-none hover:opacity-75"
                 aria-haspopup="true"
               >
                 <span className="sr-only">Open user menu</span>
@@ -96,13 +96,13 @@ const Navbar: React.FC = () => {
             </div>
             <div className="ml-3 relative hidden sm:block">
               <button
-                className="p-2 flex text-sm rounded-full align-items-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                className="p-2 flex text-sm rounded-full align-items-center focus:outline-none"
                 aria-haspopup="true"
                 onClick={toggleTheme}
               >
                 <span className="sr-only">Open user menu</span>
                 <svg
-                  className="w-5 fill-current text-blue-800 dark:text-gray-400"
+                  className="w-5 fill-current text-purple dark:text-gray-dark"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -121,9 +121,11 @@ const Navbar: React.FC = () => {
                   <path d="M12 22.9H11.99C11.44 22.9 11 22.46 11 21.91V20.95C11 20.4 11.44 19.96 11.99 19.96H12C12.55 19.96 12.99 20.4 12.99 20.95V21.91C12.99 22.46 12.55 22.9 12 22.9Z" />
                   <path d="M5.66 19.69C5.27 20.08 4.64 20.08 4.25 19.69C3.86 19.3 3.86 18.68 4.24 18.28L4.63 17.89C5.02 17.5 5.65 17.5 6.04 17.89L6.05 17.9C6.43 18.28 6.44 18.91 6.05 19.3L5.66 19.69Z" />
                 </svg>
-                <div className="mx-1 text-xs text-gray-400">/</div>
+                <div className="mx-1 text-xs text-gray dark:text-gray-dark">
+                  /
+                </div>
                 <svg
-                  className="w-5 fill-current text-gray-400 dark:text-white"
+                  className="w-5 fill-current text-gray dark:text-white"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
