@@ -3,10 +3,18 @@
 @tailwind utilities;
 
 @layer base {
+  html,
   body {
-    @apply bg-gray-lightest;
+    @apply h-full bg-gray-lightest;
   }
+
   .dark > body {
     @apply bg-purple-dark;
+  }
+}
+
+@layer components {
+  #root {
+    @apply flex flex-col h-full;
   }
 }
