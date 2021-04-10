@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 const history = createBrowserHistory();
 
 const Home = React.lazy(() => import("./pages/Home"));
+const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 const App: React.FC = () => {
   const { componentMounted } = useTheme();
@@ -14,19 +15,16 @@ const App: React.FC = () => {
   if (!componentMounted) return <div />;
 
   return (
-    <>
+    <Router history={history}>
       <Navbar />
-      <Router history={history}>
-        <React.Suspense fallback={<div>loading...</div>}>
-          <Switch>
-            <Route path="/" exact>
-              <Home />
-            </Route>
-          </Switch>
-        </React.Suspense>
-      </Router>
-    </>
+      <React.Suspense fallback={<div>loading...</div>}>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route component={NotFound} />
+        </Switch>
+      </React.Suspense>
+    </Router>
   );
 };
 
-export default App;
+export default React.memo(App);

@@ -1,6 +1,6 @@
 const config = [
   {
-    label: "หน้าแรก",
+    label: "หน้าหลัก",
     href: "/",
   },
   {
