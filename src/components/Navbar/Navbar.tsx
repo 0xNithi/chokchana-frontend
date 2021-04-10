@@ -20,7 +20,7 @@ const Navbar: React.FC = () => {
         <div className="relative flex items-center justify-between h-16">
           <div className="flex-1 flex items-stretch justify-start">
             <button
-              className="inline-flex items-center justify-center p-2 mr-6 rounded-md text-indigo-400 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-400 sm:hidden"
+              className="inline-flex items-center justify-center p-2 mr-6 rounded-md text-purple-light hover:bg-purple focus:outline-none sm:hidden"
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
@@ -142,7 +142,7 @@ const Navbar: React.FC = () => {
         </div>
       </div>
       <div className="hidden sm:hidden">
-        <div className="px-2 pt-2 pb-3 space-y-1">{links}</div>
+        <div className="flex flex-col px-2 pt-2 pb-3 space-y-1">{links}</div>
       </div>
     </nav>
   );
