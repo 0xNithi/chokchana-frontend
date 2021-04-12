@@ -1,13 +1,20 @@
 /* eslint-disable */
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import firebase from 'firebase';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { setItem } from '../../store/actions/templateActions';
 import useTheme from '../../hooks/useTheme';
 import config from './config';
 
-import firebase from 'firebase';
 
 const Navbar: React.FC = () => {
 	const { toggleTheme } = useTheme();
+
+	const template = useSelector((state: any) => state.template);
+	const dispatch = useDispatch();
+
 	const links = config.map((item, index) => (
 		<a
 			href={item.href}
@@ -21,7 +28,9 @@ const Navbar: React.FC = () => {
 	const provider = new firebase.auth.GoogleAuthProvider();
 
 	const handleLoginWithGoogle = () => {
-		firebase.auth().signInWithPopup(provider);
+		dispatch(setItem("test"));
+		console.log(template);
+		// firebase.auth().signInWithPopup(provider);
 	};
 	return (
 		<nav className='border-b-2 border-gray-100 dark:bg-gray-800'>
@@ -116,7 +125,8 @@ const Navbar: React.FC = () => {
 								<span className='sr-only'>
 									Open user menu
 								</span>
-								เข้าสู่ระบบ / ลงทะเบียน
+								{/* เข้าสู่ระบบ / ลงทะเบียน */}
+								{ template.text }
 							</button>
 						</div>
 						<div className='ml-3 relative hidden sm:block'>
