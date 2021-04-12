@@ -1,9 +1,14 @@
 import { SET_ITEM } from '../actions/types';
 
-export default function (state = null, action: any) {
+const initialState = {
+	text: null
+}
+
+export default function (state = initialState, action: any) {
 	switch (action.type) {
 		case SET_ITEM:
-			return action.payload;
+			console.log('set item (reducers) is called');
+			return { ...state, text: action.payload};
 		default:
 			return state;
 	}
