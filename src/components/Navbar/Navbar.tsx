@@ -1,16 +1,17 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import ThemeSwitcher from './components/ThemeSwitcher'
 import config from './config'
 
 const Navbar: React.FC = () => {
   const links = config.map((item, index) => (
-    <a
-      href={item.href}
+    <Link
+      to={item.href}
       className="text-purple-lightest dark:text-purple-light px-3 py-2 rounded-md text-base font-medium"
       key={index}
     >
       {item.label}
-    </a>
+    </Link>
   ))
 
   return (
