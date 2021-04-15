@@ -1,12 +1,13 @@
 import React from 'react'
+import MenuCard from './MenuCard'
 
 const BuyLottoryCard: React.FC = () => {
   return (
-    <div className="flex flex-auto p-8 dark:bg-purple rounded-3xl items-center space-x-8">
+    <MenuCard to="/pools">
       <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" className="max-h-24 max-w-24">
         <linearGradient id="linear-gradient">
           <stop offset={0} stopColor="#12bee5" />
-          <stop offset=".5" stopColor="#c071e9" />
+          <stop offset="0.5" stopColor="#c071e9" />
           <stop offset={1} stopColor="#f24f5a" />
         </linearGradient>
         <path
@@ -15,7 +16,7 @@ const BuyLottoryCard: React.FC = () => {
         />
       </svg>
       <div className="text-3xl dark:text-white">ซื้อสลาก</div>
-    </div>
+    </MenuCard>
   )
 }
 

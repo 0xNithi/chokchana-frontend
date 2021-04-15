@@ -1,6 +1,6 @@
 import React from 'react'
 import { ThemeProvider } from './ThemeProvider'
-import { FirebaseProvider } from './FirebaseProvider';
+import { FirebaseProvider } from './FirebaseProvider'
 
 type Props = {
   contexts: any
