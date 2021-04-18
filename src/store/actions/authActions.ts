@@ -11,6 +11,18 @@ export const loginUser = () => {
 
 		const user = await firebase.auth().signInWithPopup(provider)
 		try {
+			const { currentUser }: { currentUser: any } = firebase.auth();
+			const db = firebase.firestore();
+			const ref = db.collection('users').doc(currentUser.uid);
+
+			const doc = await ref.get();
+			if (!doc.exists) {
+				// redirect to create profile
+				console.log('No such document!');
+			} else {
+				console.log('Document data:', doc.data());
+			}
+
 			loginUserSuccess(dispatch, user);
 		} catch (error) {
 			loginUserFail(dispatch);
