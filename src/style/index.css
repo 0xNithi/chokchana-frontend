@@ -3,9 +3,12 @@
 @tailwind utilities;
 
 @layer base {
-  html,
+  html {
+    @apply h-full;
+  }
+
   body {
-    @apply h-full bg-gray-lightest;
+    @apply min-h-screen h-full bg-gray-lightest;
   }
 
   .dark > body {
@@ -16,5 +19,9 @@
 @layer components {
   #root {
     @apply flex flex-col h-full;
+  }
+
+  .btn {
+    @apply px-4 py-1 text-base font-extrabold flex justify-center rounded-full focus:outline-none hover:opacity-75;
   }
 }
