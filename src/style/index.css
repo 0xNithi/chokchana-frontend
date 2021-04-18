@@ -22,6 +22,6 @@
   }
 
   .btn {
-    @apply px-4 py-1 text-base font-extrabold flex rounded-full focus:outline-none hover:opacity-75;
+    @apply px-4 py-1 text-base font-extrabold flex justify-center rounded-full focus:outline-none hover:opacity-75;
   }
 }

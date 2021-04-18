@@ -8,6 +8,7 @@ import PageLoader from './components/PageLoader'
 const history = createBrowserHistory()
 
 const Home = React.lazy(() => import('./pages/Home'))
+const Pools = React.lazy(() => import('./pages/Pools'))
 const NotFound = React.lazy(() => import('./pages/NotFound'))
 
 const App: React.FC = () => {
@@ -21,6 +22,7 @@ const App: React.FC = () => {
       <React.Suspense fallback={<PageLoader />}>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/pools" component={Pools} />
           <Route component={NotFound} />
         </Switch>
       </React.Suspense>
