@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import firebase from 'firebase'
 
 export const AuthContext = React.createContext({})
@@ -14,14 +14,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 
 const FirebaseProvider: React.FC = ({ children }) => {
-  const [user, setUser]: [user: any, setUser: any] = useState(null)
-
-  useEffect(() => {
-    console.log('user: ', user)
-    firebase.auth().onAuthStateChanged(setUser)
-  })
-
-  return <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
+  return <AuthContext.Provider value={{}}>{children}</AuthContext.Provider>
 }
 
 export { FirebaseProvider }

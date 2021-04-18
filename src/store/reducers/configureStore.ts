@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage'
 import reduxThunk from 'redux-thunk'
 
 import templateReducer from './templateReducer'
+import authReducer from './authReducer'
 
 const persistConfig = {
   key: 'root',
@@ -12,6 +13,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   template: templateReducer,
+  auth: authReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

@@ -1,21 +1,11 @@
 import React from 'react'
-import firebase from 'firebase'
-import { useDispatch, useSelector } from 'react-redux'
-import { setItem } from '../../../store/actions/templateActions'
+import { useSelector } from 'react-redux'
 import useModal from '../../../hooks/useModal'
 import LoginModal from './LoginModal'
 
 const UserBlock: React.FC = () => {
   const { onPresentCallback } = useModal(LoginModal)
-  const template = useSelector((state: any) => state.template)
-  const dispatch = useDispatch()
-
-  const provider = new firebase.auth.GoogleAuthProvider()
-  const handleLoginWithGoogle = () => {
-    dispatch(setItem('test'))
-    console.log(template)
-    // firebase.auth().signInWithPopup(provider);
-  }
+  const auth = useSelector((state: any) => state.auth)
 
   return (
     <button
@@ -24,8 +14,7 @@ const UserBlock: React.FC = () => {
       onClick={onPresentCallback}
     >
       <span className="sr-only">Open user menu</span>
-      {/* เข้าสู่ระบบ / ลงทะเบียน */}
-      {template.text}
+      {auth.user ? auth.user.displayName : 'เข้าสู่ระบบ / ลงทะเบียน'}
     </button>
   )
 }

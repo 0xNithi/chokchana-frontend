@@ -1,10 +1,19 @@
 import React from 'react'
 import Modal from '../../Modal'
 
+import { useDispatch } from 'react-redux'
+import { loginUser } from '../../../store/actions/authActions'
+
 const LoginModal: React.FC = () => {
+  const dispatch = useDispatch()
+
+  const handleLogin = () => {
+    dispatch(loginUser())
+  }
+
   return (
     <Modal title="เข้าสู่ระบบ / ลงทะเบียน">
-      <button className="flex items-center w-full text-base text-cyan-dark dark:text-cyan font-extrabold bg-gray-light dark:bg-purple rounded-3xl p-4 outline-none focus:outline-none hover:opacity-75">
+      <button onClick={handleLogin} className="flex items-center w-full text-base text-cyan-dark dark:text-cyan font-extrabold bg-gray-light dark:bg-purple rounded-3xl p-4 outline-none focus:outline-none hover:opacity-75">
         <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 mr-2">
           <path
             id="a"
