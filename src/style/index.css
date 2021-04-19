@@ -14,6 +14,22 @@
   .dark > body {
     @apply bg-purple-dark;
   }
+
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-light;
+  }
+
+  .dark > ::-webkit-scrollbar-track {
+    @apply bg-purple;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-purple-light rounded-full;
+  }
 }
 
 @layer components {
