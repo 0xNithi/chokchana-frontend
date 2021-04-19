@@ -1,6 +1,10 @@
 import React from 'react'
 
+import { useEthers } from '@usedapp/core'
+
 const AccountCard: React.FC = () => {
+  const { activateBrowserWallet, deactivate, account } = useEthers()
+
   return (
     <>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 33" className="max-h-24 max-w-24">
@@ -84,7 +88,11 @@ const AccountCard: React.FC = () => {
       </svg>
       <div className="space-y-4">
         <div className="text-3xl dark:text-white">Metamask</div>
-        <button className="btn text-white bg-cyan text-lg">เชื่อมต่อกระเป๋า</button>
+        {account ? (
+          <button className="btn text-white bg-cyan text-lg" onClick={() => deactivate()}>เลิกเชื่อมต่อกระเป๋า</button>
+        ) : (
+          <button className="btn text-white bg-cyan text-lg" onClick={() => activateBrowserWallet()}>เชื่อมต่อกระเป๋า</button>
+        )}
       </div>
     </>
   )
