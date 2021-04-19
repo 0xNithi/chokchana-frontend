@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 import Modal from '../../Modal'
 
+import { useEthers } from '@usedapp/core'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser, logoutUser } from '../../../store/actions/authActions'
 
 const LoginModal: React.FC = () => {
   const dispatch = useDispatch()
   const auth = useSelector((state: any) => state.auth)
+  const { account } = useEthers()
 
   const handleLogin = () => {
     dispatch(loginUser())
@@ -22,6 +24,8 @@ const LoginModal: React.FC = () => {
         <div className="flex-col">
           <img className="rounded-full mb-4" src={auth.user.photoURL} />
           <p className="mb-4">ชื่อผู้ใช้งาน: {auth.user.displayName}</p>
+          {account && <p className="mb-4 truncate">กระเป๋าที่ใช้งาน: {account.substring(0, 8) + "..."}</p> }
+
           <button
             onClick={handleLogout}
             className="flex items-center w-full text-base text-cyan-dark dark:text-cyan font-extrabold bg-gray-light dark:bg-purple rounded-3xl p-4 outline-none focus:outline-none hover:opacity-75"
