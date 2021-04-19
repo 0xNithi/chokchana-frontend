@@ -1,19 +1,44 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Modal from '../../Modal'
 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../../../store/actions/authActions'
 
 const LoginModal: React.FC = () => {
   const dispatch = useDispatch()
+  const auth = useSelector((state: any) => state.auth)
+
+  useEffect(() => {
+    console.log(auth)
+  })
 
   const handleLogin = () => {
     dispatch(loginUser())
   }
 
+  if (auth.user) {
+    return (
+      <Modal title={`สวัสดี!`}>
+        <div className="flex-col">
+          <img className="rounded-full mb-4" src={auth.user.photoURL} />
+          <p>ชื่อผู้ใช้งาน: {auth.user.displayName}</p>
+          <button
+            onClick={handleLogin}
+            className="flex items-center w-full text-base text-cyan-dark dark:text-cyan font-extrabold bg-gray-light dark:bg-purple rounded-3xl p-4 outline-none focus:outline-none hover:opacity-75"
+          >
+            ออกจากระบบ
+          </button>
+        </div>
+      </Modal>
+    )
+  }
+
   return (
     <Modal title="เข้าสู่ระบบ / ลงทะเบียน">
-      <button onClick={handleLogin} className="flex items-center w-full text-base text-cyan-dark dark:text-cyan font-extrabold bg-gray-light dark:bg-purple rounded-3xl p-4 outline-none focus:outline-none hover:opacity-75">
+      <button
+        onClick={handleLogin}
+        className="flex items-center w-full text-base text-cyan-dark dark:text-cyan font-extrabold bg-gray-light dark:bg-purple rounded-3xl p-4 outline-none focus:outline-none hover:opacity-75"
+      >
         <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 mr-2">
           <path
             id="a"

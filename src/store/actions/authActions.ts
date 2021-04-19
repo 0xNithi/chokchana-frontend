@@ -11,7 +11,7 @@ export const loginUser = () => {
 
 		const user = await firebase.auth().signInWithPopup(provider)
 		try {
-			loginUserSuccess(dispatch, user);
+			loginUserSuccess(dispatch, user.user);
 		} catch (error) {
 			loginUserFail(dispatch);
 		}  

@@ -16,7 +16,6 @@ export default function (state = initialState, action: any) {
         case LOGIN_USER:
             return { ...state, loading: true, error: '' };
         case LOGIN_USER_SUCCESS:
-            console.log('reducers:', action.payload);
             const user: any = action.payload;
             return { ...state, ...initialState, user: user.user };
         default:
