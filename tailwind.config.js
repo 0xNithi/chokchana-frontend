@@ -40,6 +40,7 @@ module.exports = {
       cyan: {
         DEFAULT: "#1FC7D4",
         dark: "#2ECBD7",
+        darkest: "#77C2C8"
       },
     },
     spacing: {
