@@ -1,9 +1,10 @@
 import React from 'react'
-import {Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Card from '../../../components/Card'
 
 type Props = {
   pool: {
+    id: Number
     name: string
     contractAddress: string
     internalLottory: boolean
@@ -15,7 +16,7 @@ const PoolCard: React.FC<Props> = ({ pool }) => {
     <Card className="col-span-12 md:col-span-4 row-span-2 flex flex-col space-y-8 p-8">
       <div className="flex justify-between items-center pb-4 border-b-2 border-purple">
         <img
-          src={`images/${pool.internalLottory ? 'chokchana-lottery.png' : 'external-lottery.png'}`}
+          src={`/images/${pool.internalLottory ? 'chokchana-lottery.png' : 'external-lottery.png'}`}
           alt={pool.name}
           className="w-24"
         />
@@ -53,7 +54,9 @@ const PoolCard: React.FC<Props> = ({ pool }) => {
             <div className="text-lg dark:text-gray-light">{(1000000).toLocaleString('en-US')} USDT</div>
           </div>
         </div>
-        <Link to="/pools" className="btn w-full py-4 text-white text-xl text-center bg-cyan">เลือก</Link>
+        <Link to={`/pools/${pool.id}`} className="btn w-full py-4 text-white text-xl text-center bg-cyan">
+          เลือก
+        </Link>
       </div>
     </Card>
   )
