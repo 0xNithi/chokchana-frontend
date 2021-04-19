@@ -2,18 +2,18 @@ import React, { useEffect } from 'react'
 import Modal from '../../Modal'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { loginUser } from '../../../store/actions/authActions'
+import { loginUser, logoutUser } from '../../../store/actions/authActions'
 
 const LoginModal: React.FC = () => {
   const dispatch = useDispatch()
   const auth = useSelector((state: any) => state.auth)
 
-  useEffect(() => {
-    console.log(auth)
-  })
-
   const handleLogin = () => {
     dispatch(loginUser())
+  }
+
+  const handleLogout = () => {
+    dispatch(logoutUser())
   }
 
   if (auth.user) {
@@ -21,9 +21,9 @@ const LoginModal: React.FC = () => {
       <Modal title={`สวัสดี!`}>
         <div className="flex-col">
           <img className="rounded-full mb-4" src={auth.user.photoURL} />
-          <p>ชื่อผู้ใช้งาน: {auth.user.displayName}</p>
+          <p className="mb-4">ชื่อผู้ใช้งาน: {auth.user.displayName}</p>
           <button
-            onClick={handleLogin}
+            onClick={handleLogout}
             className="flex items-center w-full text-base text-cyan-dark dark:text-cyan font-extrabold bg-gray-light dark:bg-purple rounded-3xl p-4 outline-none focus:outline-none hover:opacity-75"
           >
             ออกจากระบบ
