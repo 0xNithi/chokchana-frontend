@@ -21,7 +21,7 @@ const UserBlock: React.FC = () => {
         modalOpen ? <LoginModal /> : null
       }
       <span className="sr-only">Open user menu</span>
-      {auth.user ? auth.user.displayName : 'เข้าสู่ระบบ / ลงทะเบียน'}
+      {auth.displayName ? auth.displayName : 'เข้าสู่ระบบ / ลงทะเบียน'}
     </button>
   )
 }
