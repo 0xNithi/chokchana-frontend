@@ -31,6 +31,7 @@ const App: React.FC = () => {
           <Route exact path="/mylottery" component={MyLottery} />
           <Route exact path="/info" component={Info} />
           <Route exact path="/register" component={Register} />
+          <Route path="/profile/edit" component={Register} />
           <Route component={NotFound} />
         </Switch>
       </React.Suspense>
