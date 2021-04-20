@@ -1,7 +1,6 @@
 import React from 'react'
 import { FirebaseProvider } from './FirebaseProvider'
 import { ThemeProvider } from './ThemeProvider'
-import { ModalProvider } from './ModalProvider'
 
 type Props = {
   contexts: any
@@ -18,9 +17,7 @@ const ProviderComposer: React.FC<Props> = ({ contexts, children }) =>
   )
 
 const ContextProvider: React.FC = ({ children }) => (
-  <ProviderComposer contexts={[<FirebaseProvider />, <ThemeProvider />, <ModalProvider />]}>
-    {children}
-  </ProviderComposer>
+  <ProviderComposer contexts={[<FirebaseProvider />, <ThemeProvider />]}>{children}</ProviderComposer>
 )
 
 export default ContextProvider

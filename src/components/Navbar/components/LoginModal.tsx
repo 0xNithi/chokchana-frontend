@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Modal from '../../Modal'
 
 import { useEthers } from '@usedapp/core'
@@ -22,9 +22,9 @@ const LoginModal: React.FC = () => {
     return (
       <Modal title={`สวัสดี!`}>
         <div className="flex-col">
-          <img className="rounded-full mb-4" src={auth.user.photoURL} />
+          <img className="rounded-full mb-4" src={auth.user.photoURL} alt={auth.user.displayName} />
           <p className="mb-4">ชื่อผู้ใช้งาน: {auth.user.displayName}</p>
-          {account && <p className="mb-4 truncate">กระเป๋าที่ใช้งาน: {account.substring(0, 8) + "..."}</p> }
+          {account && <p className="mb-4 truncate">กระเป๋าที่ใช้งาน: {account.substring(0, 8) + '...'}</p>}
 
           <button
             onClick={handleLogout}
