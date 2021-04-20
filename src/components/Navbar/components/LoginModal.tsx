@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { useEthers } from '@usedapp/core'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -6,11 +6,15 @@ import { useHistory } from 'react-router-dom'
 import { loginUser, logoutUser } from '../../../store/actions/authActions'
 import Modal from '../../Modal'
 
-const LoginModal: React.FC = () => {
+type Props = {
+  setModalOpen: Dispatch<SetStateAction<boolean>>
+}
+
+const LoginModal: React.FC<Props> = ({ setModalOpen }) => {
   const dispatch = useDispatch()
   const auth = useSelector((state: any) => state.auth)
   const { account } = useEthers()
-  const history = useHistory();
+  const history = useHistory()
 
   const handleLogin = () => {
     dispatch(loginUser(history))
@@ -22,7 +26,7 @@ const LoginModal: React.FC = () => {
 
   if (auth.user) {
     return (
-      <Modal title={`ข้อมูลผู้ใช้งาน`}>
+      <Modal title={`ข้อมูลผู้ใช้งาน`} onDismiss={() => setModalOpen(false)}>
         <div className="flex-col">
           <img className="rounded-full mb-4" src={auth.user.photoURL} alt={auth.user.displayName} />
           <p className="mb-4">ชื่อผู้ใช้งาน: {auth.user.displayName}</p>
@@ -40,7 +44,7 @@ const LoginModal: React.FC = () => {
   }
 
   return (
-    <Modal title="เข้าสู่ระบบ / ลงทะเบียน">
+    <Modal title="เข้าสู่ระบบ / ลงทะเบียน" onDismiss={() => setModalOpen(false)}>
       <button
         onClick={handleLogin}
         className="flex items-center w-full text-base text-cyan-dark dark:text-cyan font-extrabold bg-gray-light dark:bg-purple rounded-3xl p-4 outline-none focus:outline-none hover:opacity-75"

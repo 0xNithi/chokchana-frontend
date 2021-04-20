@@ -10,15 +10,17 @@ const UserBlock: React.FC = () => {
   }
 
   return (
-    <button
-      className="px-4 py-1 text-base text-cyan-dark dark:text-cyan font-extrabold bg-gray-light dark:bg-purple flex rounded-full focus:outline-none hover:opacity-75"
-      aria-haspopup="true"
-      onClick={toggleLoginModal}
-    >
-      {modalOpen ? <LoginModal /> : null}
-      <span className="sr-only">Open user menu</span>
-      {auth.user ? auth.user.displayName : 'เข้าสู่ระบบ / ลงทะเบียน'}
-    </button>
+    <>
+      <button
+        className="px-4 py-1 text-base text-cyan-dark dark:text-cyan font-extrabold bg-gray-light dark:bg-purple flex rounded-full focus:outline-none hover:opacity-75"
+        aria-haspopup="true"
+        onClick={toggleLoginModal}
+      >
+        <span className="sr-only">Open user menu</span>
+        {auth.user ? auth.user.displayName : 'เข้าสู่ระบบ / ลงทะเบียน'}
+      </button>
+      {modalOpen && <LoginModal setModalOpen={setModalOpen} />}
+    </>
   )
 }
 

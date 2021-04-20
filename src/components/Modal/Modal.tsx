@@ -3,7 +3,7 @@ import React from 'react'
 type Props = {
   title: string
   children: React.ReactNode
-  onDismiss?: () => {}
+  onDismiss?: () => void
 }
 
 const Modal: React.FC<Props> = ({ title, children, onDismiss }) => {
