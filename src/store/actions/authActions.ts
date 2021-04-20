@@ -8,7 +8,7 @@ import {
   FETCH_USER_PROFILE,
   FETCH_USER_PROFILE_SUCCESS,
   FETCH_USER_PROFILE_FAIL,
-  SET_USER_PROFILE_SUCCESS
+  EDIT_USER_PROFILE
 } from './types'
 import firebase from 'firebase'
 
@@ -19,47 +19,11 @@ export const setUserProfile = (history: any, data: any) => {
     const ref = db.collection('users').doc(currentUser.uid)
 
     await ref.set(data)
+    const profileData = await ref.get();
+
     history.push('/')
-    dispatch({ type: SET_USER_PROFILE_SUCCESS })
+    dispatch({ type: EDIT_USER_PROFILE, payload: {...currentUser, ...profileData.data()} });
   }
-}
-
-export const loginUser = (history: any) => {
-  return async (dispatch: any) => {
-    dispatch({ type: LOGIN_USER })
-
-    const provider = new firebase.auth.GoogleAuthProvider()
-
-    const user = await firebase.auth().signInWithPopup(provider)
-    try {
-      const { currentUser }: { currentUser: any } = firebase.auth()
-      const db = firebase.firestore()
-      const ref = db.collection('users').doc(currentUser.uid)
-
-      const doc = await ref.get()
-      if (!doc.exists) {
-        // redirect to create profile
-        history.push('/profile/edit')
-      }
-
-      loginUserSuccess(dispatch, user)
-    } catch (error) {
-      loginUserFail(dispatch)
-    }
-  }
-}
-
-const loginUserSuccess = (dispatch: any, user: any) => {
-  dispatch({
-    type: LOGIN_USER_SUCCESS,
-    payload: user,
-  })
-}
-
-const loginUserFail = (dispatch: any) => {
-  dispatch({
-    type: LOGIN_USER_FAIL,
-  })
 }
 
 export const logoutUser = () => async (dispatch: any) => {

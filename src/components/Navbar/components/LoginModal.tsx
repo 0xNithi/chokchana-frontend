@@ -4,7 +4,7 @@ import { useEthers } from '@usedapp/core'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import { loginUser, logoutUser } from '../../../store/actions/authActions'
+import { logoutUser } from '../../../store/actions/authActions'
 import Modal from '../../Modal'
 
 const LoginModal: React.FC = () => {
