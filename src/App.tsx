@@ -24,7 +24,7 @@ const App: React.FC = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/pools" component={Pools} />
-          <Route path="/register" component={Register} />
+          <Route path="/profile/edit" component={Register} />
           <Route component={NotFound} />
         </Switch>
       </React.Suspense>

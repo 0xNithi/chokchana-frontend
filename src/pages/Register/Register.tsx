@@ -1,4 +1,5 @@
 import React from 'react'
+import { fetchUserProfile }
 import Layout from '../../components/Layout'
 import Divider from '../../components/Divider'
 
@@ -10,7 +11,17 @@ const Register: React.FC = () => {
         <Divider />
         <input
           type="text"
-          placeholder="ชื่อ - นามสกุล"
+          placeholder="ชื่อ"
+          className="w-80 px-8 py-2 text-white text-lg font-semibold bg-purple-lightest rounded-full shadow placeholder-white outline-none focus:outline-none"
+        />
+        <input
+          type="text"
+          placeholder="ชื่อกลาง (ถ้ามี)"
+          className="w-80 px-8 py-2 text-white text-lg font-semibold bg-purple-lightest rounded-full shadow placeholder-white outline-none focus:outline-none"
+        />
+        <input
+          type="text"
+          placeholder="นามสกุล"
           className="w-80 px-8 py-2 text-white text-lg font-semibold bg-purple-lightest rounded-full shadow placeholder-white outline-none focus:outline-none"
         />
         <input

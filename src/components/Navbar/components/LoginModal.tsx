@@ -1,17 +1,19 @@
-import React, { useEffect } from 'react'
-import Modal from '../../Modal'
-
+import React from 'react'
 import { useEthers } from '@usedapp/core'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+
 import { loginUser, logoutUser } from '../../../store/actions/authActions'
+import Modal from '../../Modal'
 
 const LoginModal: React.FC = () => {
   const dispatch = useDispatch()
   const auth = useSelector((state: any) => state.auth)
   const { account } = useEthers()
+  const history = useHistory();
 
   const handleLogin = () => {
-    dispatch(loginUser())
+    dispatch(loginUser(history))
   }
 
   const handleLogout = () => {
@@ -20,7 +22,7 @@ const LoginModal: React.FC = () => {
 
   if (auth.user) {
     return (
-      <Modal title={`สวัสดี!`}>
+      <Modal title={`ข้อมูลผู้ใช้งาน`}>
         <div className="flex-col">
           <img className="rounded-full mb-4" src={auth.user.photoURL} />
           <p className="mb-4">ชื่อผู้ใช้งาน: {auth.user.displayName}</p>
