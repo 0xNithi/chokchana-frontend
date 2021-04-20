@@ -29,14 +29,12 @@ const MyLottery: React.FC = () => {
                   </div>
                 </td>
                 <td>
-                    <div className="bg-orange text-gray-darkest text-3xl tracking-widest rounded-xl py-2 mx-4">
-                        100000
-                    </div>
+                  <div className="bg-orange text-gray-darkest text-3xl tracking-widest rounded-xl py-2 mx-4">
+                    100000
+                  </div>
                 </td>
                 <td>
-                    <button className="btn bg-cyan text-gray-lightest text-xl px-8 py-3 mx-auto">
-                        แลกรางวัล
-                    </button>
+                  <button className="btn bg-cyan text-gray-lightest text-xl px-8 py-3 mx-auto">แลกรางวัล</button>
                 </td>
               </tr>
             </tbody>

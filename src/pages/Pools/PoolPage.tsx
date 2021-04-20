@@ -12,11 +12,15 @@ type Props = {
   pools: Pools[]
 }
 
+type Params = {
+  poolId: string
+}
+
 const PoolPage: React.FC<Props> = ({ pools }) => {
   const [active, setActive] = React.useState(true)
 
-  const { poolId }: any = useParams()
-  const pool = pools.find((pool) => pool.id == poolId)
+  const { poolId }: Params = useParams()
+  const pool = pools.find((pool) => pool.id === Number(poolId))
 
   return pool ? (
     <>
