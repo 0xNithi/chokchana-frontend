@@ -9,6 +9,9 @@ const history = createBrowserHistory()
 
 const Home = React.lazy(() => import('./pages/Home'))
 const Pools = React.lazy(() => import('./pages/Pools'))
+const Check = React.lazy(() => import('./pages/Check'))
+const MyLottery = React.lazy(() => import('./pages/MyLottery'))
+const Info = React.lazy(() => import('./pages/Info'))
 const Register = React.lazy(() => import('./pages/Register'))
 const NotFound = React.lazy(() => import('./pages/NotFound'))
 
@@ -24,7 +27,10 @@ const App: React.FC = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/pools" component={Pools} />
-          <Route path="/register" component={Register} />
+          <Route exact path="/check" component={Check} />
+          <Route exact path="/mylottery" component={MyLottery} />
+          <Route exact path="/info" component={Info} />
+          <Route exact path="/register" component={Register} />
           <Route component={NotFound} />
         </Switch>
       </React.Suspense>
