@@ -57,33 +57,38 @@ export const logoutUser = () => async (dispatch: any) => {
   dispatch({ type: LOGOUT_USER })
 }
 
-export const fetchUserProfile = (history: any) => {
+export const fetchUserProfile = () => {
   return async (dispatch: any) => {
     dispatch({ type: FETCH_USER_PROFILE })
 
     try {
-      const { currentUser }: { currentUser: any } = firebase.auth()
+      const { currentUser }: { currentUser: any } = await firebase.auth()
       const db = firebase.firestore()
       const ref = db.collection('users').doc(currentUser.uid)
 
       const doc = await ref.get()
       if (!doc.exists) {
-        dispatch({
-          type: FETCH_USER_PROFILE_SUCCESS,
-          payload: {},
-        })
+        fetchUserProfileFail(dispatch)
       } else {
         const data = doc.data();
-        dispatch({
-          type: FETCH_USER_PROFILE_SUCCESS,
-          payload: data,
-        })
+        fetchUserProfileSuccess(dispatch, data)
       }
     } catch (error) {
-      dispatch({
-        type: FETCH_USER_PROFILE_FAIL,
-        payload: {},
-      })
+      console.error(error.message)
+      fetchUserProfileFail(dispatch)
     }
   }
+}
+
+const fetchUserProfileFail = (dispatch: any) => {
+  dispatch({
+    type: FETCH_USER_PROFILE_FAIL,
+  })
+}
+
+const fetchUserProfileSuccess = (dispatch: any, data: any) => {
+  dispatch({
+    type: FETCH_USER_PROFILE_SUCCESS,
+    payload: data
+  })
 }

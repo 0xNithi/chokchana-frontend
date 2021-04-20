@@ -19,7 +19,6 @@ const initialState = {
 }
 
 export default function (state = initialState, action: any) {
-  console.log(action)
   switch (action.type) {
     case LOGIN_USER:
       return { ...state, loading: true, error: '' }
@@ -32,10 +31,11 @@ export default function (state = initialState, action: any) {
     case FETCH_USER_PROFILE:
       return { ...state, loading: true, error: '' }
     case FETCH_USER_PROFILE_FAIL:
+      console.log('shit3')
       return { ...state, profile: null }
     case FETCH_USER_PROFILE_SUCCESS:
+      console.log('shit2')
       const profile: any = action.payload
-      console.log(profile)
       return { ...state, profile }
     default:
       return state

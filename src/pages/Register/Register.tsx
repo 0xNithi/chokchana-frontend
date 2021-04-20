@@ -1,9 +1,28 @@
-import React from 'react'
-import { fetchUserProfile }
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUserProfile } from '../../store/actions/authActions'
 import Layout from '../../components/Layout'
 import Divider from '../../components/Divider'
 
 const Register: React.FC = () => {
+  const auth = useSelector((state: any) => state.auth)
+
+  // const [profileInfo, setProfileInfo] = useState({
+  //   name: '',
+  //   middleName: '',
+  //   lastName: '',
+  //   birthDate: null,
+  //   idNumber: null,
+  //   phoneNumber: ''
+  // });
+
+  useEffect(() => {
+    console.log(auth)
+  })
+
+  const handleChange = (key: any) => {
+  }
+
   return (
     <Layout>
       <div className="flex flex-col items-center space-y-8">
