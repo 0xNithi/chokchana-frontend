@@ -13,7 +13,7 @@ type Props = {
 
 const PoolCard: React.FC<Props> = ({ pool }) => {
   return (
-    <Card className="col-span-12 md:col-span-4 row-span-2 flex flex-col space-y-8 p-8">
+    <Card className="col-span-12 md:col-span-4 flex flex-col space-y-8 p-8">
       <div className="flex justify-between items-center pb-4 border-b-2 border-purple">
         <img
           src={`/images/${pool.internalLottory ? 'chokchana-lottery.png' : 'external-lottery.png'}`}

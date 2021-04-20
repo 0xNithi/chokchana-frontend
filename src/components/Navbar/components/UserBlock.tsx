@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-// import useModal from '../../../hooks/useModal'
 import LoginModal from './LoginModal'
 
 const UserBlock: React.FC = () => {
-  // const { onPresentCallback } = useModal(LoginModal)
   const auth = useSelector((state: any) => state.auth)
   const [modalOpen, setModalOpen] = useState(false)
   const toggleLoginModal = () => {
@@ -17,9 +15,7 @@ const UserBlock: React.FC = () => {
       aria-haspopup="true"
       onClick={toggleLoginModal}
     >
-      {
-        modalOpen ? <LoginModal /> : null
-      }
+      {modalOpen ? <LoginModal /> : null}
       <span className="sr-only">Open user menu</span>
       {auth.user ? auth.user.displayName : 'เข้าสู่ระบบ / ลงทะเบียน'}
     </button>

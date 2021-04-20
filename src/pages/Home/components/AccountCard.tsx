@@ -89,9 +89,13 @@ const AccountCard: React.FC = () => {
       <div className="space-y-4">
         <div className="text-3xl dark:text-white">Metamask</div>
         {account ? (
-          <button className="btn text-white bg-cyan text-lg" onClick={() => deactivate()}>เลิกเชื่อมต่อกระเป๋า</button>
+          <button className="btn text-white bg-cyan text-lg" onClick={() => deactivate()}>
+            เลิกเชื่อมต่อกระเป๋า
+          </button>
         ) : (
-          <button className="btn text-white bg-cyan text-lg" onClick={() => activateBrowserWallet()}>เชื่อมต่อกระเป๋า</button>
+          <button className="btn text-white bg-cyan text-lg" onClick={() => activateBrowserWallet()}>
+            เชื่อมต่อกระเป๋า
+          </button>
         )}
       </div>
     </>
