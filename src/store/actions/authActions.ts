@@ -67,16 +67,18 @@ export const logoutUser = () => async (dispatch: any) => {
   dispatch({ type: LOGOUT_USER })
 }
 
-export const fetchUserProfile = () => {
+export const fetchUserProfile = (userId: string) => {
   return async (dispatch: any) => {
     dispatch({ type: FETCH_USER_PROFILE })
 
     try {
-      const { currentUser }: { currentUser: any } = await firebase.auth()
+      // const { currentUser }: { currentUser: any } = firebase.auth()
       const db = firebase.firestore()
-      const ref = db.collection('users').doc(currentUser.uid)
+      const ref = db.collection('users').doc(userId)
 
       const doc = await ref.get()
+
+      console.log(doc)
       if (!doc.exists) {
         fetchUserProfileFail(dispatch)
       } else {

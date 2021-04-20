@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import {useHistory} from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { setUserProfile } from '../../store/actions/authActions'
+import { setUserProfile, fetchUserProfile } from '../../store/actions/authActions'
 import Layout from '../../components/Layout'
 import Divider from '../../components/Divider'
 
 const Register: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const history = useHistory()
 
   const RegisterSchema = Yup.object().shape({
@@ -33,14 +33,7 @@ const Register: React.FC = () => {
         <div className="text-3xl text-purple-light pt-6">สมัครสมาชิก</div>
         <Divider />
         <Formik
-          initialValues={{
-            name: '',
-            surname: '',
-            middleName: '',
-            birthDate: '',
-            idNumber: '',
-            phoneNumber: '',
-          }}
+          initialValues={{}}
           validationSchema={RegisterSchema}
           onSubmit={(values) => {
             dispatch(setUserProfile(history, values))

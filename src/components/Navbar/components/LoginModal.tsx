@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import firebase from 'firebase'
 import { useEthers } from '@usedapp/core'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -10,23 +11,34 @@ const LoginModal: React.FC = () => {
   const dispatch = useDispatch()
   const auth = useSelector((state: any) => state.auth)
   const { account } = useEthers()
-  const history = useHistory();
+  const history = useHistory()
 
-  const handleLogin = () => {
-    dispatch(loginUser(history))
+  const provider = new firebase.auth.GoogleAuthProvider()
+
+  const handleLogin = async () => {
+    await firebase.auth().signInWithPopup(provider)
+    const { currentUser }: { currentUser: any } = firebase.auth()
+    const db = firebase.firestore()
+    const ref = db.collection('users').doc(currentUser.uid)
+
+    const doc = await ref.get()
+    if (!doc.exists) {
+      // redirect to create profile
+      history.push('/profile/edit')
+    }
   }
 
   const handleLogout = () => {
     dispatch(logoutUser())
   }
 
-  if (auth.user) {
+  if (auth) {
     return (
       <Modal title={`ข้อมูลผู้ใช้งาน`}>
         <div className="flex-col">
-          <img className="rounded-full mb-4" src={auth.user.photoURL} />
-          <p className="mb-4">ชื่อผู้ใช้งาน: {auth.user.displayName}</p>
-          {account && <p className="mb-4 truncate">กระเป๋าที่ใช้งาน: {account.substring(0, 8) + "..."}</p> }
+          <img className="rounded-full mb-4" src={auth.photoURL} />
+          <p className="mb-4">ชื่อผู้ใช้งาน: {auth.displayName}</p>
+          {account && <p className="mb-4 truncate">กระเป๋าที่ใช้งาน: {account.substring(0, 8) + '...'}</p>}
 
           <button
             onClick={handleLogout}
