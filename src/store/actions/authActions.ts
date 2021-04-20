@@ -8,8 +8,21 @@ import {
   FETCH_USER_PROFILE,
   FETCH_USER_PROFILE_SUCCESS,
   FETCH_USER_PROFILE_FAIL,
+  SET_USER_PROFILE_SUCCESS
 } from './types'
 import firebase from 'firebase'
+
+export const setUserProfile = (history: any, data: any) => {
+  return async (dispatch: any) => {
+    const { currentUser }: { currentUser: any } = firebase.auth()
+    const db = firebase.firestore()
+    const ref = db.collection('users').doc(currentUser.uid)
+
+    await ref.set(data)
+    history.push('/')
+    dispatch({ type: SET_USER_PROFILE_SUCCESS })
+  }
+}
 
 export const loginUser = (history: any) => {
   return async (dispatch: any) => {
@@ -25,11 +38,8 @@ export const loginUser = (history: any) => {
 
       const doc = await ref.get()
       if (!doc.exists) {
-        history.push('/profile/edit')
         // redirect to create profile
-        console.log('No such document!')
-      } else {
-        console.log('Document data:', doc.data())
+        history.push('/profile/edit')
       }
 
       loginUserSuccess(dispatch, user)
@@ -70,7 +80,7 @@ export const fetchUserProfile = () => {
       if (!doc.exists) {
         fetchUserProfileFail(dispatch)
       } else {
-        const data = doc.data();
+        const data = doc.data()
         fetchUserProfileSuccess(dispatch, data)
       }
     } catch (error) {
@@ -89,6 +99,6 @@ const fetchUserProfileFail = (dispatch: any) => {
 const fetchUserProfileSuccess = (dispatch: any, data: any) => {
   dispatch({
     type: FETCH_USER_PROFILE_SUCCESS,
-    payload: data
+    payload: data,
   })
 }

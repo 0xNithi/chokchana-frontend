@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
+import {useHistory} from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchUserProfile } from '../../store/actions/authActions'
+
+import { setUserProfile } from '../../store/actions/authActions'
 import Layout from '../../components/Layout'
 import Divider from '../../components/Divider'
 
 const Register: React.FC = () => {
-  const auth = useSelector((state: any) => state.auth)
+  const dispatch = useDispatch();
+  const history = useHistory()
 
   const RegisterSchema = Yup.object().shape({
     name: Yup.string()
@@ -40,7 +43,7 @@ const Register: React.FC = () => {
           }}
           validationSchema={RegisterSchema}
           onSubmit={(values) => {
-            console.log(values)
+            dispatch(setUserProfile(history, values))
           }}
         >
           {({ errors, touched }) => (
