@@ -17,7 +17,7 @@ const UserBlock: React.FC = () => {
         onClick={toggleLoginModal}
       >
         <span className="sr-only">Open user menu</span>
-        {auth.user ? auth.user.displayName : 'เข้าสู่ระบบ / ลงทะเบียน'}
+        {auth ? auth.displayName : 'เข้าสู่ระบบ / ลงทะเบียน'}
       </button>
       {modalOpen && <LoginModal setModalOpen={setModalOpen} />}
     </>
