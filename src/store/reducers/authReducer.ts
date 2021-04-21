@@ -1,11 +1,4 @@
-import {
-  LOGIN_USER,
-  LOGIN_USER_SUCCESS,
-  LOGOUT_USER,
-  FETCH_USER_PROFILE,
-  FETCH_USER_PROFILE_FAIL,
-  FETCH_USER_PROFILE_SUCCESS,
-} from '../actions/types'
+import { FETCH_USER, EDIT_USER_PROFILE, USER_LOGOUT } from '../actions/types'
 
 type User = {
   photoURL: string
@@ -20,23 +13,15 @@ const initialState = {
 
 export default function (state = initialState, action: any) {
   switch (action.type) {
-    case LOGIN_USER:
-      return { ...state, loading: true, error: '' }
-    case LOGOUT_USER:
-      return { ...state, user: null }
-    case LOGIN_USER_SUCCESS:
-      const user: any = action.payload
-      return { ...state, ...initialState, user: user.user }
-
-    case FETCH_USER_PROFILE:
-      return { ...state, loading: true, error: '' }
-    case FETCH_USER_PROFILE_FAIL:
-      console.log('shit3')
-      return { ...state, profile: null }
-    case FETCH_USER_PROFILE_SUCCESS:
-      console.log('shit2')
-      const profile: any = action.payload
-      return { ...state, profile }
+    case FETCH_USER:
+      return action.payload || false
+    case EDIT_USER_PROFILE:
+      if (action.payload) {
+        return action.payload
+      }
+      return state
+    case USER_LOGOUT:
+      return false
     default:
       return state
   }

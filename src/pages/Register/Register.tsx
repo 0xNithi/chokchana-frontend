@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import {useHistory} from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,8 +9,13 @@ import Layout from '../../components/Layout'
 import Divider from '../../components/Divider'
 
 const Register: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const history = useHistory()
+  const auth = useSelector((state: any) => state.auth)
+
+  useEffect(() => {
+    console.log(auth)
+  })
 
   const RegisterSchema = Yup.object().shape({
     name: Yup.string()
@@ -27,22 +32,27 @@ const Register: React.FC = () => {
     phoneNumber: Yup.number().required('โปรดกรอกเบอร์โทรศัพท์'),
   })
 
+  if(!auth) {
+    return <p>Loading...</p>
+  }
+
   return (
     <Layout>
       <div className="flex flex-col items-center space-y-8">
-        <div className="text-3xl text-purple-light pt-6">สมัครสมาชิก</div>
+        <div className="text-3xl text-purple-light pt-6">{'เพิ่ม/แก้ไข ข้อมูลสมาชิก'}</div>
         <Divider />
         <Formik
           initialValues={{
-            name: '',
-            surname: '',
-            middleName: '',
-            birthDate: '',
-            idNumber: '',
-            phoneNumber: '',
+            name: auth.name || '',
+            surname: auth.surname || '',
+            middleName: auth.middleName || '',
+            birthDate: auth.birthDate || '',
+            idNumber: auth.idNumber || '',
+            phoneNumber: auth.phoneNumber || '',
           }}
           validationSchema={RegisterSchema}
           onSubmit={(values) => {
+            console.log('values', values)
             dispatch(setUserProfile(history, values))
           }}
         >
