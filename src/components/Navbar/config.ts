@@ -1,9 +1,5 @@
 const config = [
   {
-    label: 'หน้าหลัก',
-    href: '/',
-  },
-  {
     label: 'ซื้อสลาก',
     href: '/pools',
   },
@@ -14,6 +10,10 @@ const config = [
   {
     label: 'สลากของฉัน',
     href: '/mylottery',
+  },
+  {
+    label: 'ข้อมูลธุรกรรม',
+    href: '/info',
   },
 ]
 

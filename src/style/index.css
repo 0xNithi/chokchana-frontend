@@ -30,6 +30,10 @@
   ::-webkit-scrollbar-thumb {
     @apply bg-purple-light rounded-full;
   }
+
+  ::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
 }
 
 @layer components {

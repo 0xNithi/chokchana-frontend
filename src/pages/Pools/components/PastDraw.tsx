@@ -52,7 +52,10 @@ const PastDraw: React.FC<Props> = ({ pool }) => {
           </div>
           <div>
             <div className="text-purple-light">อันดับ 3</div>
-            <div className="text-base text-purple dark:text-white">1000000 1111111 1234567 1000000 1111111 1234567 1000000 1111111 1234567 1234567 1000000 1111111 1234567 1000000 1111111 1234567</div>
+            <div className="text-base text-purple dark:text-white">
+              1000000 1111111 1234567 1000000 1111111 1234567 1000000 1111111 1234567 1234567 1000000 1111111 1234567
+              1000000 1111111 1234567
+            </div>
           </div>
         </div>
       </Card>
