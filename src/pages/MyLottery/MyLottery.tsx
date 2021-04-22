@@ -1,13 +1,33 @@
-import React from 'react'
+/* eslint-disable */ 
+import React, { useEffect } from 'react'
+import { useEthers, useContractCall } from '@usedapp/core'
+import { Interface } from '@ethersproject/abi'
+import { formatUnits } from '@ethersproject/units'
+
+import { TicketAddress } from '../../config/constants/addresses'
+import ChokchanaTicketABI from '../../config/abis/ChokchanaTicket.json'
 import Layout from '../../components/Layout'
 import Divider from '../../components/Divider'
 import Card from '../../components/Card'
 
 const MyLottery: React.FC = () => {
+  const { account, library } = useEthers()
+
+  const ChokchanaTicketInterface = new Interface(ChokchanaTicketABI)
+
+  const ticketBalance: any = useContractCall(
+    {
+      abi: ChokchanaTicketInterface,
+      address: TicketAddress,
+      method: 'balanceOf',
+      args: [account],
+    }
+  )
+
   return (
     <Layout>
       <div className="flex flex-col items-center space-y-8">
-        <div className="text-3xl text-purple-light pt-6">สลากของฉัน</div>
+        <div className="text-3xl text-purple-light pt-6">สลากของฉัน {ticketBalance && `${(formatUnits(ticketBalance, 18))}`}</div>
         <Divider />
         <Card className="w-full px-12 py-8">
           <table className="table-auto w-full text-center font-semibold">
