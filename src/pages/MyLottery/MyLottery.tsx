@@ -1,4 +1,4 @@
-/* eslint-disable */ 
+/* eslint-disable */
 import React, { useEffect } from 'react'
 import { useEthers, useContractCall } from '@usedapp/core'
 import { Interface } from '@ethersproject/abi'
@@ -16,18 +16,20 @@ const MyLottery: React.FC = () => {
   const ChokchanaTicketInterface = new Interface(ChokchanaTicketABI)
 
   const ticketBalance: any = useContractCall(
-    {
+    account && {
       abi: ChokchanaTicketInterface,
       address: TicketAddress,
       method: 'balanceOf',
       args: [account],
-    }
+    },
   )
 
   return (
     <Layout>
       <div className="flex flex-col items-center space-y-8">
-        <div className="text-3xl text-purple-light pt-6">สลากของฉัน {ticketBalance && `${(formatUnits(ticketBalance, 18))}`}</div>
+        <div className="text-3xl text-purple-light pt-6">
+          สลากของฉัน {ticketBalance && `(${formatUnits(ticketBalance[0], 18).replace('.0', '')})`}
+        </div>
         <Divider />
         <Card className="w-full px-12 py-8">
           <table className="table-auto w-full text-center font-semibold">
