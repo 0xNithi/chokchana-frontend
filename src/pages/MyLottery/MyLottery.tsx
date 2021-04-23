@@ -11,7 +11,7 @@ import Divider from '../../components/Divider'
 import Card from '../../components/Card'
 
 const MyLottery: React.FC = () => {
-  const { account, library } = useEthers()
+  const { account } = useEthers()
 
   const ChokchanaTicketInterface = new Interface(ChokchanaTicketABI)
 
@@ -24,11 +24,24 @@ const MyLottery: React.FC = () => {
     },
   )
 
+  const ticket1: any = useContractCall(
+    account && {
+      abi: ChokchanaTicketInterface,
+      address: TicketAddress,
+      method: 'get',
+      args: [0],
+    },
+  )
+
+  useEffect(() => {
+    console.log(ticket1)
+  })
+
   return (
     <Layout>
       <div className="flex flex-col items-center space-y-8">
         <div className="text-3xl text-purple-light pt-6">
-          สลากของฉัน {ticketBalance && `(${formatUnits(ticketBalance[0], 18).replace('.0', '')})`}
+          สลากของฉัน {ticketBalance && `(${formatUnits(ticketBalance[0], 0).replace('.0', '')})`}
         </div>
         <Divider />
         <Card className="w-full px-12 py-8">
