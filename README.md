@@ -75,12 +75,17 @@
    ```sh
    git clone https://github.com/MrNithi/chokchana-frontend.git
    ```
-2. ติดตั้ง NPM packages or Yarn packages
-   ```sh
-   npm install
-   ```
+2. ติดตั้ง Yarn packages
    ```sh
    yarn install
+   ```
+3. ทดสอบโปรแกรม
+   ```sh
+   yarn start
+   ```
+4. build โปรแกรมเพื่อนำไป deploy ที่อื่น
+   ```sh
+   yarn start
    ```
 
 ### Built With
