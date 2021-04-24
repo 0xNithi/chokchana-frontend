@@ -11,9 +11,9 @@ import './style/index.css'
 const { store, persistor } = configureStore()
 
 const config = {
-  readOnlyChainId: ChainId.Mainnet,
+  readOnlyChainId: ChainId.Kovan,
   readOnlyUrls: {
-    [ChainId.Mainnet]: 'https://mainnet.infura.io/v3/62687d1a985d4508b2b7a24827551934',
+    [ChainId.Kovan]: 'https://kovan.infura.io/v3/3c14e63f7e0d4c82b30b254eaaf1d818',
   },
 }
 

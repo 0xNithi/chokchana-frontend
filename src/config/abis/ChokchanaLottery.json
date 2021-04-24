@@ -2,44 +2,6 @@
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "number",
-				"type": "uint256"
-			}
-		],
-		"name": "buyTicket",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "ticketId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint8",
-				"name": "rank",
-				"type": "uint8"
-			}
-		],
-		"name": "claimReward",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "nextRound",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "address",
 				"name": "_ticket",
 				"type": "address"
@@ -48,6 +10,11 @@
 				"internalType": "address",
 				"name": "_buyingCurrency",
 				"type": "address"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_noOfRank",
+				"type": "uint8"
 			},
 			{
 				"internalType": "uint256",
@@ -78,70 +45,95 @@
 		"type": "event"
 	},
 	{
-		"inputs": [],
-		"name": "renounceOwnership",
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "number",
+				"type": "uint256"
+			}
+		],
+		"name": "buyTicket",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "buyingPeriod",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ticketId",
+				"type": "uint256"
+			}
+		],
+		"name": "claimReward",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getBuyingPeriod",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint8",
+				"name": "round",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint8",
+				"name": "number",
+				"type": "uint8"
+			}
+		],
+		"name": "getClaimInfo",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint8",
+				"name": "round",
+				"type": "uint8"
+			},
 			{
 				"internalType": "uint8",
 				"name": "rank",
 				"type": "uint8"
-			},
-			{
-				"internalType": "uint256",
-				"name": "reward",
-				"type": "uint256"
 			}
 		],
-		"name": "setClaimableReward",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint8",
-				"name": "_rank",
-				"type": "uint8"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_rewardNumber",
-				"type": "uint256"
-			}
-		],
-		"name": "setRewardNumber",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "transferOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint8",
-				"name": "",
-				"type": "uint8"
-			}
-		],
-		"name": "claimableReward",
+		"name": "getReward",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -154,20 +146,7 @@
 	},
 	{
 		"inputs": [],
-		"name": "curDeposit",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "curRound",
+		"name": "getTotalReward",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -192,40 +171,61 @@
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
+				"internalType": "bool",
+				"name": "_buyingPeriod",
+				"type": "bool"
+			}
+		],
+		"name": "setBuyingPeriod",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
 			{
 				"internalType": "uint8",
-				"name": "",
+				"name": "rank",
 				"type": "uint8"
-			}
-		],
-		"name": "rewardNumbers",
-		"outputs": [
+			},
 			{
 				"internalType": "uint256",
-				"name": "",
+				"name": "percentage",
 				"type": "uint256"
 			}
 		],
-		"stateMutability": "view",
+		"name": "setReward",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
 		"inputs": [],
-		"name": "ticketPrice",
-		"outputs": [
+		"name": "summarizedRewards",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
 			}
 		],
-		"stateMutability": "view",
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ]

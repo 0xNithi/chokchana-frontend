@@ -13,10 +13,6 @@ const Register: React.FC = () => {
   const history = useHistory()
   const auth = useSelector((state: any) => state.auth)
 
-  useEffect(() => {
-    console.log(auth)
-  })
-
   const RegisterSchema = Yup.object().shape({
     name: Yup.string()
       .min(2, 'ชื่อจริงต้องมีความยาวในช่วง 2 - 50 ตัวอักษร')
