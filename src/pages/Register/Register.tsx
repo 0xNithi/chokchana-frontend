@@ -62,7 +62,7 @@ const Register: React.FC = () => {
                   className="w-80 my-2 mx-6 px-8 py-2 text-white text-lg font-semibold bg-purple-lightest rounded-full shadow placeholder-white outline-none focus:outline-none"
                 />
                 {/* TODO: style this! */}
-                <ErrorMessage name="name" className="text-white" component="div" />
+                <ErrorMessage name="name" className="text-red-600" component="div" />
               </div>
               <div>
                 <Field
@@ -71,7 +71,7 @@ const Register: React.FC = () => {
                   placeholder="ชื่อกลาง (ถ้ามี)"
                   className="w-80 my-2 mx-6 px-8 py-2 text-white text-lg font-semibold bg-purple-lightest rounded-full shadow placeholder-white outline-none focus:outline-none"
                 />
-                <ErrorMessage name="middleName" className="text-white" component="div" />
+                <ErrorMessage name="middleName" className="text-red-600" component="div" />
               </div>
               <div>
                 <Field
@@ -80,7 +80,7 @@ const Register: React.FC = () => {
                   placeholder="นามสกุล"
                   className="w-80 my-2 mx-6 px-8 py-2 text-white text-lg font-semibold bg-purple-lightest rounded-full shadow placeholder-white outline-none focus:outline-none"
                 />
-                <ErrorMessage name="surname" className="text-white" component="div" />
+                <ErrorMessage name="surname" className="text-red-600" component="div" />
               </div>
               <div>
                 <Field
@@ -91,7 +91,7 @@ const Register: React.FC = () => {
                   onMouseEnter={(e: any) => (e.currentTarget.type = 'date')}
                   onBlur={(e: any) => (e.currentTarget.type = 'text')}
                 />
-                <ErrorMessage name="birthDate" className="text-white" component="div" />
+                <ErrorMessage name="birthDate" className="text-red-600" component="div" />
               </div>
               <div>
                 <Field
@@ -100,7 +100,7 @@ const Register: React.FC = () => {
                   placeholder="รหัสบัตรประชาชน"
                   className="my-2 mx-6 w-80 px-8 py-2 text-white text-lg font-semibold bg-purple-lightest rounded-full shadow placeholder-white outline-none focus:outline-none"
                 />
-                <ErrorMessage name="idNumber" className="text-white" component="div" />
+                <ErrorMessage name="idNumber" className="text-red-600" component="div" />
               </div>
               <div>
                 <Field
@@ -109,7 +109,7 @@ const Register: React.FC = () => {
                   placeholder="โทรศัพท์มือถือ"
                   className="my-2 mx-6 w-80 px-8 py-2 text-white text-lg font-semibold bg-purple-lightest rounded-full shadow placeholder-white outline-none focus:outline-none"
                 />
-                <ErrorMessage name="phoneNumber" className="text-white" component="div" />
+                <ErrorMessage name="phoneNumber" className="text-red-600" component="div" />
               </div>
               <button type="submit" className="btn text-white bg-cyan text-3xl px-36 py-4">
                 ยืนยัน
