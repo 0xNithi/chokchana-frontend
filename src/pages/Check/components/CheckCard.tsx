@@ -25,8 +25,6 @@ const CheckCard: React.FC<Props> = ({ pool }) => {
           <div className="flex justify-center items-center bg-cyan w-12 h-12 rounded-xl">0</div>
           <div className="flex justify-center items-center bg-cyan w-12 h-12 rounded-xl">0</div>
           <div className="flex justify-center items-center bg-cyan w-12 h-12 rounded-xl">0</div>
-          <div className="flex justify-center items-center bg-cyan w-12 h-12 rounded-xl">0</div>
-          <div className="flex justify-center items-center bg-cyan w-12 h-12 rounded-xl">0</div>
         </div>
         <Link to={`/pools/${pool.id}/history`} className="btn p-4 bg-cyan rounded-xl">
           ข้อมูล
