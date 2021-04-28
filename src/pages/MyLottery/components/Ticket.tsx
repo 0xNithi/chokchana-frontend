@@ -4,8 +4,6 @@ import { Interface } from '@ethersproject/abi'
 import { formatUnits } from '@ethersproject/units'
 
 import TicketInteraction from './TicketInteraction';
-import { LotteryAddress } from '../../../config/constants/addresses'
-import ChokchanaLotteryABI from '../../../config/abis/ChokchanaLottery.json'
 import { TicketAddress } from '../../../config/constants/addresses'
 import ChokchanaTicketABI from '../../../config/abis/ChokchanaTicket.json'
 

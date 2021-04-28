@@ -1,4 +1,4 @@
-export const THBTokenAddress = '0x6CEd76063D80dB50896C8E6176Bbea9a9d61C1e1'
-export const TicketAddress = '0xe6295a7007914CE7CA667D50976125C933414128'
-export const LotteryAddress = '0xD8b01EbC76278d4DA891CE77c4C416c362886003'
-export const RandomGeneratorAddress = '0x7CB8004cfA3C598c538C78eA977129C3e0252135'
+export const THBTokenAddress = '0x95bd962428294935Bf39508995aB9f204e5bf00a'
+export const TicketAddress = '0x78C1889cD0F5dbf5237Cecc2976f657A2B6B8432'
+export const LotteryAddress = '0x3Ed505Cb5444DC4a34a69Ca32211C8243a26c369'
+export const RandomGeneratorAddress = '0x44734AD3D1FC9133BE00E91252A215E53fcAfbc6'
