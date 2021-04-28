@@ -1,4 +1,5 @@
-import React, { Dispatch, SetStateAction, useEffect } from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
+import { Link } from 'react-router-dom'
 import firebase from 'firebase'
 import { useEthers } from '@usedapp/core'
 import { useDispatch, useSelector } from 'react-redux'
@@ -40,10 +41,29 @@ const LoginModal: React.FC<Props> = ({ setModalOpen }) => {
     return (
       <Modal title={`ข้อมูลผู้ใช้งาน`} onDismiss={() => setModalOpen(false)}>
         <div className="flex-col">
-          <img className="rounded-full mb-4" src={auth.photoURL} />
-          <p className="mb-4">ชื่อผู้ใช้งาน: {auth.displayName}</p>
-          {account && <p className="mb-4 truncate">กระเป๋าที่ใช้งาน: {account.substring(0, 8) + '...'}</p>}
-
+          <img
+            className="rounded-full mb-4"
+            src={
+              auth.photoURL
+                ? auth.photoURL
+                : 'https://www.southbankprestigeservicecentre.com.au/wp-content/uploads/2018/10/blank-profile.png'
+            }
+          />
+          {
+            console.log(auth.photoURL)
+          }
+          <p className="mb-4 text-base text-cyan-dark dark:text-cyan">ชื่อผู้ใช้งาน: {auth.displayName}</p>
+          {account && (
+            <p className="mb-4 text-base text-cyan-dark dark:text-cyan truncate">
+              กระเป๋าที่ใช้งาน: {account.substring(0, 8) + '...'}
+            </p>
+          )}
+          <Link
+            to="/profile/edit"
+            className="flex mb-2 items-center w-full text-base text-cyan-dark dark:text-cyan font-extrabold bg-gray-light dark:bg-purple rounded-3xl p-4 outline-none focus:outline-none hover:opacity-75"
+          >
+            แก้ไขโปรไฟล์
+          </Link>
           <button
             onClick={handleLogout}
             className="flex items-center w-full text-base text-cyan-dark dark:text-cyan font-extrabold bg-gray-light dark:bg-purple rounded-3xl p-4 outline-none focus:outline-none hover:opacity-75"
