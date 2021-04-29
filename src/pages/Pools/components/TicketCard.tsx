@@ -25,13 +25,13 @@ const TicketCard: React.FC<Props> = ({ pool }) => {
 
   const contract = new Contract(LotteryAddress, ChokchanaLotteryInterface, library?.getSigner())
   const buyTicketContractFunction = useContractFunction(contract, 'buyTicket')
-  
+
   const allowance = useTokenAllowance(THBTokenAddress, account, LotteryAddress)
   const tokenContract = new Contract(THBTokenAddress, THBTokenInterface, library?.getSigner())
   const approveContractFunction = useContractFunction(tokenContract, 'approve')
 
   const handleApprove = () => {
-    approveContractFunction.send(LotteryAddress, BigNumber.from('1000000000000000000000000000000000000000000000000000'));
+    approveContractFunction.send(LotteryAddress, BigNumber.from('1000000000000000000000000000000000000000000000000000'))
   }
 
   const TicketSchema = Yup.object().shape({

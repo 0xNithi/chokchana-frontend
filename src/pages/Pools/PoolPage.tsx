@@ -5,6 +5,7 @@ import Layout from '../../components/Layout'
 import Divider from '../../components/Divider'
 import NextDraw from './components/NextDraw'
 import PastDraw from './components/PastDraw'
+import PoolConfig from './components/PoolConfig'
 import NotFound from '../NotFound'
 import { Pools } from '../../config/constants/types'
 
@@ -17,8 +18,6 @@ type Params = {
 }
 
 const PoolPage: React.FC<Props> = ({ pools }) => {
-  const [active, setActive] = React.useState(true)
-
   const match = useRouteMatch()
   const { poolId }: Params = useParams()
   const pool = pools.find((pool) => pool.id === Number(poolId))
@@ -33,16 +32,26 @@ const PoolPage: React.FC<Props> = ({ pools }) => {
               <NavLink
                 className={`px-4 py-1 rounded-full outline-none focus:outline-none`}
                 activeClassName="bg-purple-light text-gray-light"
-                exact to={`/pools/${poolId}`}
+                exact
+                to={`/pools/${poolId}`}
               >
                 งวดถัดไป
               </NavLink>
               <NavLink
                 className={`px-4 py-1 rounded-full outline-none focus:outline-none`}
                 activeClassName="bg-purple-light text-gray-light"
-                exact to={`/pools/${poolId}/history`}
+                exact
+                to={`/pools/${poolId}/history`}
               >
                 งวดที่แล้ว
+              </NavLink>
+              <NavLink
+                className={`px-4 py-1 rounded-full outline-none focus:outline-none`}
+                activeClassName="bg-purple-light text-gray-light"
+                exact
+                to={`/pools/${poolId}/config`}
+              >
+                ตั้งค่า
               </NavLink>
             </div>
           </div>
@@ -50,6 +59,9 @@ const PoolPage: React.FC<Props> = ({ pools }) => {
           <Switch>
             <Route path={`${match.path}/history`}>
               <PastDraw pool={pool} />
+            </Route>
+            <Route path={`${match.path}/config`}>
+              <PoolConfig pool={pool} />
             </Route>
             <Route>
               <NextDraw pool={pool} />

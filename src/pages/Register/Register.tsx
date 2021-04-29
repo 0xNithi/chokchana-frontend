@@ -28,7 +28,7 @@ const Register: React.FC = () => {
     phoneNumber: Yup.number().required('โปรดกรอกเบอร์โทรศัพท์'),
   })
 
-  if(!auth) {
+  if (!auth) {
     return <p>Loading...</p>
   }
 
