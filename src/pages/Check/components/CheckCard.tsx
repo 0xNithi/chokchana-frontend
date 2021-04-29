@@ -27,11 +27,7 @@ const CheckCard: React.FC<Props> = ({ pool }) => {
       args: [],
     },
   )
-
-  useEffect(() => {
-    console.log('curRound', curRound ? curRound[0].toNumber() : '')
-  }, [curRound])
-
+  
   return (
     <Card className="grid grid-cols-12 gap-4 w-full px-12 py-8 space-x-8">
       <div className="col-span-12 md:col-span-4 flex items-center space-x-8">

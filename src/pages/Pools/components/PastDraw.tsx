@@ -13,8 +13,7 @@ type Props = {
 }
 
 const PastDraw: React.FC<Props> = ({ pool }) => {
-  const [numRound, setNumRound] = React.useState('')
-  const { account } = useEthers()
+  const [, setNumRound] = React.useState('')
 
   const ChokchanaLotteryInterface = new Interface(ChokchanaLotteryABI)
 

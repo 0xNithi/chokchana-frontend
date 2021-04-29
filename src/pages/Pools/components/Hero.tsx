@@ -21,7 +21,6 @@ const Hero: React.FC<Props> = ({ pool }) => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      // setCounter(counter + 1);
       const _timestamp = +(+new Date() + '').substring(0, 10)
       setTimestamp(_timestamp)
     }, 1000)
@@ -57,10 +56,6 @@ const Hero: React.FC<Props> = ({ pool }) => {
       args: [],
     },
   )
-
-  useEffect(() => {
-    console.log('canBuyTime: ', canBuyTime ? +formatUnits(canBuyTime[0], 0) : 'loading...')
-  })
 
   return (
     <div className="w-full bg-cyan">

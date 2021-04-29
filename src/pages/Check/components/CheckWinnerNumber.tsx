@@ -27,10 +27,6 @@ const CheckCard: React.FC<Props> = ({ curRound }) => {
     },
   )
 
-  useEffect(() => {
-    console.log('round winner', roundWinner ? roundWinner[0].toNumber() : undefined)
-  })
-
   if (roundWinner) {
     return (
       <div className="flex space-x-4">
