@@ -1,5 +1,26 @@
 [
 	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_chokchanaLottery",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_chokchanaTicket",
+				"type": "address"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_noOfRank",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
 		"inputs": [],
 		"name": "drawRandomReward",
 		"outputs": [],
@@ -42,27 +63,6 @@
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_chokchanaLottery",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "_chokchanaTicket",
-				"type": "address"
-			},
-			{
-				"internalType": "uint8",
-				"name": "_noOfRank",
-				"type": "uint8"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
 	},
 	{
 		"inputs": [],
