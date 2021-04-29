@@ -44,7 +44,7 @@ const CheckCard: React.FC<Props> = ({ curRound }) => {
 
   return (
     <div className="flex space-x-4">
-      <div className="flex justify-center items-center bg-cyan w-48 h-12 rounded-xl">Loading...</div>
+      <div className="flex justify-center items-center w-48 h-12 rounded-xl">Loading...</div>
     </div>
   )
 }

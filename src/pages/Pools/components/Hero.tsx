@@ -45,7 +45,7 @@ const Hero: React.FC<Props> = ({ pool }) => {
       case 'h':
         return Math.trunc(secondsLeft / 3600)
       default:
-        return 0
+        return -1
     }
   }
 
@@ -78,7 +78,7 @@ const Hero: React.FC<Props> = ({ pool }) => {
             </div>
           </div>
           <div className="flex items-center space-x-8">
-            {canBuyTime && getDisplayCountDown('s') > 0 ? (
+            {canBuyTime && getDisplayCountDown('s') >= 0 ? (
               <>
                 <div className="flex flex-col justify-center items-center bg-gray-light dark:bg-purple rounded-xl w-24 h-24 text-gray-dark dark:text-white font-medium">
                   <div className="text-sm text-purple-light">Hours</div>

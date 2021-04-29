@@ -47,8 +47,7 @@ const CheckCard: React.FC<Props> = ({ pool }) => {
           <CheckWinnerNumber curRound={curRound[0].toNumber()} />
         ) : (
           <div className="flex space-x-4">
-            <div className="flex justify-center items-center bg-cyan w-12 h-12 rounded-xl">0</div>
-            <div className="flex justify-center items-center bg-cyan w-12 h-12 rounded-xl">0</div>
+            <div className="flex justify-center items-center w-48 h-12 rounded-xl">Loading...</div>
           </div>
         )}
         <Link to={`/pools/${pool.id}/history`} className="btn p-4 bg-cyan rounded-xl">
