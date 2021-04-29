@@ -39,8 +39,7 @@ const Ticket: React.FC<Props> = ({ ticket, ticketId }) => {
   )
 
   const handleClaimReward = () => {
-    // console.log(ticketId)
-    claimRewardContractFunction.send(ticketId);
+    claimRewardContractFunction.send(ticketId, formatUnits(claimableReward[0], 0).replace('.0', ''));
   }
 
   if (claimableReward && curRound) {

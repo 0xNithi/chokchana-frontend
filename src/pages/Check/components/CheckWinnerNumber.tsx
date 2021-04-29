@@ -23,12 +23,12 @@ const CheckCard: React.FC<Props> = ({ curRound }) => {
       abi: ChokchanaLotteryInterface,
       address: LotteryAddress,
       method: 'getReward',
-      args: [curRound - 1, 0],
+      args: [curRound - 1, 1],
     },
   )
 
   useEffect(() => {
-    console.log(roundWinner ? roundWinner[0].toNumber() : undefined)
+    console.log('round winner', roundWinner ? roundWinner[0].toNumber() : undefined)
   })
 
   if (roundWinner) {
@@ -36,14 +36,15 @@ const CheckCard: React.FC<Props> = ({ curRound }) => {
       <div className="flex space-x-4">
         <div className="flex justify-center items-center bg-cyan w-12 h-12 rounded-xl">{roundWinner[0].toString()[0] | 0}</div>
         <div className="flex justify-center items-center bg-cyan w-12 h-12 rounded-xl">{roundWinner[0].toString()[1] | 0}</div>
+        <div className="flex justify-center items-center bg-cyan w-12 h-12 rounded-xl">{roundWinner[0].toString()[2] | 0}</div>
+        <div className="flex justify-center items-center bg-cyan w-12 h-12 rounded-xl">{roundWinner[0].toString()[3] | 0}</div>
       </div>
     )
   }
 
   return (
     <div className="flex space-x-4">
-      <div className="flex justify-center items-center bg-cyan w-12 h-12 rounded-xl">0</div>
-      <div className="flex justify-center items-center bg-cyan w-12 h-12 rounded-xl">0</div>
+      <div className="flex justify-center items-center bg-cyan w-48 h-12 rounded-xl">Loading...</div>
     </div>
   )
 }
