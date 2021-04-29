@@ -1,46 +1,133 @@
-# Getting Started with Create React App
+<!-- PROJECT SHIELDS -->
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Contributors][contributors-shield]][contributors-url]
+[![MIT License][license-shield]][license-url]
 
-## Available Scripts
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/MrNithi/chokchana-frontend">
+    <img src="public/favicon.ico" alt="Logo" width="80" height="80">
+  </a>
 
-In the project directory, you can run:
+  <h3 align="center">Software Development Processes</h3>
 
-### `yarn start`
+  <p align="center">
+    <br />
+    <br />
+    <a href="https://github.com/MrNithi/chokchana-frontend/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/MrNithi/chokchana-frontend/issues">Request Feature</a>
+  </p>
+</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <li><a href="#project-link">Project Link</a></li>
+  </ol>
+</details>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<!-- ABOUT THE PROJECT -->
 
-### `yarn test`
+## About The Project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ในปัจจุบันมีการจำหน่ายสลากเกินราคา สูงถึง 25-50% ซึ่งเป็นปัญหาการเอาเปรียบผู้บริโภคที่ยังไม่สามารถแก้ไขได้ และจากสถานการณ์การแพร่ระบาดของเชื้อ "โควิด-19" ในปัจจุบัน ทำให้การไปซื้อสลากกินแบ่งรัฐบาลมีความเสี่ยงที่จะได้รับเชื้อ "โควิด-19"   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "โชคชนะ" หรือ "Chokchana" เป็น Web Application ที่สามารถแก้ปัญหาข้างต้นได้โดยผู้ใช้งานสามารถซื้อสลากจากที่บ้านได้โดยไม่จำเป็นต้องออกไปซื้อสลากกับตัวแทนจำหน่าย ซึ่งลดโอกาสที่จะได้รับเชื้อ "โควิด-19" และสลากที่ขายในระบบมีราคาที่แน่นอนจึงเป็นการแก้ปัญหาการเอาเปรียบผู้บริโภคได้ โดยระบบกองสลากจะอยู่ใน Ethereum Blockchain จึงทำให้ระบบมีความน่าเชื่อถือเนื่องจากประโยชน์หลักของ Blockchain คือ การกระจายศูนย์ (Decentralized), ระบบเปิด (Permissionless) และ ความโปร่งใส (Transparent)
 
-### `yarn build`
+<!-- GETTING STARTED -->
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ตัวอย่างการติดตั้งและเรียกใช้งานให้ทำตามขั้นตอนตัวอย่างเหล่านี้
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+ตัวอย่างวิธีการติดตั้ง
+* npm
+  ```sh
+  npm install
+  ```
+* yarn
+  ```sh
+  yarn install
+  ```
 
-### `yarn eject`
+### Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. โคลน repo
+   ```sh
+   git clone https://github.com/MrNithi/chokchana-frontend.git
+   ```
+2. ติดตั้ง Yarn packages
+   ```sh
+   yarn install
+   ```
+3. ทดสอบโปรแกรม
+   ```sh
+   yarn start
+   ```
+4. build โปรแกรมเพื่อนำไป deploy ที่อื่น
+   ```sh
+   yarn start
+   ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Built With
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+รายการของ Dependency ที่ใช้งานเป็นหลัก
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Firebase](https://firebase.google.com/)
+- [Tailwindcss](https://tailwindcss.com/)
+- [useDApp](https://usedapp.io/)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<!-- LICENSE -->
 
-## Learn More
+## License
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Distributed under the MIT License. See `LICENSE` for more information.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<!-- CONTACT -->
+
+## Contact
+
+- Nithi Nomprawat - nithi.boss157@gmail.com
+- Nonthakon Jitchiranant - non_thakon@hotmail.com
+
+<!-- ACKNOWLEDGEMENTS -->
+## Acknowledgements
+* [React](https://reactjs.org/)
+* [Redux](https://redux.js.org/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Firebase](https://firebase.google.com/)
+* [useDApp](https://usedapp.io/)
+* [Formik](https://formik.org/)
+* [Yup](https://github.com/jquense/yup)
+
+## Project Link
+- Frontend : [https://github.com/MrNithi/chokchana-frontend](https://github.com/MrNithi/chokchana-frontend)
+- Smart Contract : [https://github.com/nonkung51/chokchana-contracts](https://github.com/nonkung51/chokchana-contracts)
+
+<!-- MARKDOWN LINKS & IMAGES -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/MrNithi/chokchana-frontend
+[contributors-url]: https://github.com/MrNithi/chokchana-frontend/graphs/contributors
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg
+[license-url]: https://github.com/MrNithi/chokchana-frontend/blob/main/LICENSE
