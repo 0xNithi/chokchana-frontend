@@ -1,4 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useEthers, useContractCall } from '@usedapp/core'
+import { Interface } from '@ethersproject/abi'
+import { formatUnits } from '@ethersproject/units'
+
+import { LotteryAddress } from '../../../config/constants/addresses'
+import ChokchanaLotteryABI from '../../../config/abis/ChokchanaLottery.json'
+
 import Layout from '../../../components/Layout'
 import { Pools } from '../../../config/constants/types'
 
@@ -7,6 +14,54 @@ type Props = {
 }
 
 const Hero: React.FC<Props> = ({ pool }) => {
+  const { account } = useEthers()
+  const [timestamp, setTimestamp] = useState(0)
+
+  const ChokchanaLotteryInterface = new Interface(ChokchanaLotteryABI)
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      // setCounter(counter + 1);
+      const _timestamp = +(+new Date() + '').substring(0, 10)
+      setTimestamp(_timestamp)
+    }, 1000)
+
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [timestamp])
+
+  const getDisplayCountDown = (type: string) => {
+    const _canBuyTime = +formatUnits(canBuyTime[0], 0)
+    const secondsLeft = _canBuyTime - timestamp
+    if (secondsLeft < 0) {
+      return -1
+    }
+    switch (type) {
+      case 's':
+        return secondsLeft % 60
+      case 'm':
+        return Math.trunc((secondsLeft % 3600) / 60)
+      case 'h':
+        return Math.trunc(secondsLeft / 3600)
+      default:
+        return 0
+    }
+  }
+
+  const canBuyTime: any = useContractCall(
+    account && {
+      abi: ChokchanaLotteryInterface,
+      address: LotteryAddress,
+      method: 'getCanBuyTime',
+      args: [],
+    },
+  )
+
+  useEffect(() => {
+    console.log('canBuyTime: ', canBuyTime ? +formatUnits(canBuyTime[0], 0) : 'loading...')
+  })
+
   return (
     <div className="w-full bg-cyan">
       <Layout>
@@ -23,18 +78,26 @@ const Hero: React.FC<Props> = ({ pool }) => {
             </div>
           </div>
           <div className="flex items-center space-x-8">
-            <div className="flex flex-col justify-center items-center bg-gray-light dark:bg-purple rounded-xl w-24 h-24 text-gray-dark dark:text-white font-medium">
-              <div className="text-sm text-purple-light">Hours</div>
-              <div className="text-4xl">0</div>
-            </div>
-            <div className="flex flex-col justify-center items-center bg-gray-light dark:bg-purple rounded-xl w-24 h-24 text-gray-dark dark:text-white font-medium">
-              <div className="text-sm text-purple-light">Mins</div>
-              <div className="text-4xl">0</div>
-            </div>
-            <div className="flex flex-col justify-center items-center bg-gray-light dark:bg-purple rounded-xl w-24 h-24 text-gray-dark dark:text-white font-medium">
-              <div className="text-sm text-purple-light">Secs</div>
-              <div className="text-4xl">0</div>
-            </div>
+            {canBuyTime && getDisplayCountDown('s') > 0 ? (
+              <>
+                <div className="flex flex-col justify-center items-center bg-gray-light dark:bg-purple rounded-xl w-24 h-24 text-gray-dark dark:text-white font-medium">
+                  <div className="text-sm text-purple-light">Hours</div>
+                  <div className="text-4xl">{canBuyTime ? getDisplayCountDown('h') : 0}</div>
+                </div>
+                <div className="flex flex-col justify-center items-center bg-gray-light dark:bg-purple rounded-xl w-24 h-24 text-gray-dark dark:text-white font-medium">
+                  <div className="text-sm text-purple-light">Mins</div>
+                  <div className="text-4xl">{canBuyTime ? getDisplayCountDown('m') : 0}</div>
+                </div>
+                <div className="flex flex-col justify-center items-center bg-gray-light dark:bg-purple rounded-xl w-24 h-24 text-gray-dark dark:text-white font-medium">
+                  <div className="text-sm text-purple-light">Secs</div>
+                  <div className="text-4xl">{canBuyTime ? getDisplayCountDown('s') : 0}</div>
+                </div>
+              </>
+            ) : (
+              <div className="flex flex-col justify-center items-center bg-gray-light dark:bg-purple rounded-xl w-64 h-24 text-gray-dark dark:text-white font-medium">
+                  <div className="text-xl text-white font-bold">สลากยังไม่พร้อมใช้งาน</div>
+                </div>
+            )}
           </div>
         </div>
       </Layout>
