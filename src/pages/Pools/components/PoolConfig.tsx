@@ -141,7 +141,7 @@ const ConfigPool: React.FC<Props> = ({ pool }) => {
       setlockBeforeDraw(formatUnits(lockBeforeDrawTime[0], 0).replace('.0', ''))
     }
   }, [lockBeforeDrawTime])
-//////
+  //////
   useEffect(() => {
     if (firstPrizeNumber) {
       setFirstPrize(formatUnits(firstPrizeNumber[0], 0).replace('.0', ''))

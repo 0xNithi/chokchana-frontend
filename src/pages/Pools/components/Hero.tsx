@@ -90,8 +90,8 @@ const Hero: React.FC<Props> = ({ pool }) => {
               </>
             ) : (
               <div className="flex flex-col justify-center items-center bg-gray-light dark:bg-purple rounded-xl w-64 h-24 text-gray-dark dark:text-white font-medium">
-                  <div className="text-xl text-white font-bold">สลากยังไม่พร้อมใช้งาน</div>
-                </div>
+                <div className="text-xl text-white font-bold">สลากยังไม่พร้อมใช้งาน</div>
+              </div>
             )}
           </div>
         </div>

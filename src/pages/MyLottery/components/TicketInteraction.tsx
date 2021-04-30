@@ -9,8 +9,8 @@ import ChokchanaLotteryABI from '../../../config/abis/ChokchanaLottery.json'
 import ChokchanaTicketABI from '../../../config/abis/ChokchanaTicket.json'
 
 type Props = {
-  ticket: any,
-  ticketId: string,
+  ticket: any
+  ticketId: string
 }
 
 const Ticket: React.FC<Props> = ({ ticket, ticketId }) => {
@@ -48,16 +48,20 @@ const Ticket: React.FC<Props> = ({ ticket, ticketId }) => {
   )
 
   const handleClaimReward = () => {
-    claimRewardContractFunction.send(ticketId, formatUnits(claimableReward[0], 0).replace('.0', ''));
+    claimRewardContractFunction.send(ticketId, formatUnits(claimableReward[0], 0).replace('.0', ''))
   }
 
   if (claimableReward && curRound) {
-    if(ticketDetail[0].claimed) {
+    if (ticketDetail[0].claimed) {
       return <div className="text-green text-xl px-8 py-3 mx-auto">รับรางวัลแล้ว</div>
-    }  else if(curRound[0].toNumber() <= ticket[0].round.toNumber()) {
+    } else if (curRound[0].toNumber() <= ticket[0].round.toNumber()) {
       return <div className="text-gray-lightest text-xl px-8 py-3 mx-auto">รางวัลยังไม่ออก</div>
     } else if (!claimableReward[0].isZero()) {
-      return <button onClick={handleClaimReward} className="btn bg-cyan text-gray-lightest text-xl px-8 py-3 mx-auto">รับรางวัล</button>
+      return (
+        <button onClick={handleClaimReward} className="btn bg-cyan text-gray-lightest text-xl px-8 py-3 mx-auto">
+          รับรางวัล
+        </button>
+      )
     }
     return <div className="text-red-500 text-xl px-8 py-3 mx-auto">ไม่สามารถรับรางวัลได้</div>
   }

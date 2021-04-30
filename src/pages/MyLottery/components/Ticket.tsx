@@ -3,7 +3,7 @@ import { useEthers, useContractCall } from '@usedapp/core'
 import { Interface } from '@ethersproject/abi'
 import { formatUnits } from '@ethersproject/units'
 
-import TicketInteraction from './TicketInteraction';
+import TicketInteraction from './TicketInteraction'
 import { TicketAddress } from '../../../config/constants/addresses'
 import ChokchanaTicketABI from '../../../config/abis/ChokchanaTicket.json'
 
@@ -50,9 +50,7 @@ const Ticket: React.FC<Props> = ({ index }) => {
         </div>
       </td>
       <td>
-        {
-          ticket && <TicketInteraction ticket={ticket} ticketId={formatUnits(ticketIndex[0], 0).replace('.0', '')}/>
-        }
+        {ticket && <TicketInteraction ticket={ticket} ticketId={formatUnits(ticketIndex[0], 0).replace('.0', '')} />}
       </td>
     </tr>
   )

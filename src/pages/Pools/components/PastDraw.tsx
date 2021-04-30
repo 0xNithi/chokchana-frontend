@@ -17,14 +17,12 @@ const PastDraw: React.FC<Props> = ({ pool }) => {
 
   const ChokchanaLotteryInterface = new Interface(ChokchanaLotteryABI)
 
-  const curRound: any = useContractCall(
-    {
-      abi: ChokchanaLotteryInterface,
-      address: LotteryAddress,
-      method: 'getCurRound',
-      args: [],
-    },
-  )
+  const curRound: any = useContractCall({
+    abi: ChokchanaLotteryInterface,
+    address: LotteryAddress,
+    method: 'getCurRound',
+    args: [],
+  })
 
   let resultRow: any = []
 
