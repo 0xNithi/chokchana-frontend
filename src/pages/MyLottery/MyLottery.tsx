@@ -29,7 +29,7 @@ const MyLottery: React.FC = () => {
   let ticketRow: any = []
 
   for (let i = 0; i < ticketBalance; i++) {
-    ticketRow.push(<Ticket key={i} index={i} />)
+    ticketRow.unshift(<Ticket key={i} index={i} />)
   }
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const MyLottery: React.FC = () => {
           <table className="table-auto w-full text-center font-semibold">
             <thead className="text-xl text-purple-lightest">
               <tr className="border-b-2 h-16">
-                <th>เวลา</th>
+                <th>งวดที่</th>
                 <th>กองสลาก</th>
                 <th>เลขของคุณ</th>
                 <th>สถานะ</th>

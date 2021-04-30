@@ -23,8 +23,11 @@ const Register: React.FC = () => {
       .max(50, 'นามสกุลต้องมีความยาวในช่วง 2 - 50 ตัวอักษร')
       .required('โปรดระบุชื่อจริง'),
     middleName: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!'),
-    birthDate: Yup.date().required('Birth'),
-    idNumber: Yup.number().required('โปรดกรอกรหัสบัตรประชาชน'),
+    birthDate: Yup.date().required('โปรดระบุวันเกิด'),
+    idNumber: Yup.number()
+      .required('โปรดกรอกรหัสบัตรประชาชน')
+      .min(1000000000000, 'โปรดกรอกรหัสบัตรประชาชน 13 หลัก')
+      .max(9999999999999, 'โปรดกรอกรหัสบัตรประชาชน 13 หลัก'),
     phoneNumber: Yup.number().required('โปรดกรอกเบอร์โทรศัพท์'),
   })
 
@@ -38,6 +41,7 @@ const Register: React.FC = () => {
         <div className="text-3xl text-purple-light pt-6">{'เพิ่ม/แก้ไข ข้อมูลสมาชิก'}</div>
         <Divider />
         <Formik
+          validateOnChange
           initialValues={{
             name: auth.name || '',
             surname: auth.surname || '',

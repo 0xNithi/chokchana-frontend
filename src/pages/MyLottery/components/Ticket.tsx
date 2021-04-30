@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useEthers, useContractCall } from '@usedapp/core'
 import { Interface } from '@ethersproject/abi'
 import { formatUnits } from '@ethersproject/units'
 
+import TicketInteraction from './TicketInteraction';
 import { TicketAddress } from '../../../config/constants/addresses'
 import ChokchanaTicketABI from '../../../config/abis/ChokchanaTicket.json'
 
@@ -36,7 +37,7 @@ const Ticket: React.FC<Props> = ({ index }) => {
 
   return (
     <tr className="h-24">
-      <td></td>
+      <td>{ticket && formatUnits(ticket[0].round, 0).replace('.0', '')}</td>
       <td>
         <div className="flex justify-center items-center space-x-4">
           <img src="/images/external-lottery.png" alt="external-lottery" className="w-16" />
@@ -49,7 +50,9 @@ const Ticket: React.FC<Props> = ({ index }) => {
         </div>
       </td>
       <td>
-        <button className="btn bg-cyan text-gray-lightest text-xl px-8 py-3 mx-auto">แลกรางวัล</button>
+        {
+          ticket && <TicketInteraction ticket={ticket} ticketId={formatUnits(ticketIndex[0], 0).replace('.0', '')}/>
+        }
       </td>
     </tr>
   )

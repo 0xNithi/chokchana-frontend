@@ -16,10 +16,6 @@ const UserBlock: React.FC = () => {
   const { account } = useEthers()
   const thbBalance: any = useTokenBalance(THBTokenAddress, account)
 
-  useEffect(() => {
-    console.log(thbBalance)
-  }, [thbBalance])
-
   return (
     <div className="flex">
       <button
