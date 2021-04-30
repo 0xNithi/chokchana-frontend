@@ -49,7 +49,7 @@ const PastDraw: React.FC<Props> = ({ round }) => {
             <div className="flex flex-col">
               <div className="text-base text-purple dark:text-purple-lightest">หมายเลขที่ชนะ</div>
               <div className="text-3xl text-purple dark:text-white">
-                {firstWinner ? formatUnits(firstWinner[0], 0).replace('.0', '') : 'Loading...'}
+                {firstWinner ? (formatUnits(firstWinner[0], 0).replace('.0', '') + '').padStart(4, '0') : 'Loading...'}
               </div>
             </div>
           </div>
@@ -68,13 +68,13 @@ const PastDraw: React.FC<Props> = ({ round }) => {
         <div>
           <div className="text-purple-light">อันดับ 2</div>
           <div className="text-lg text-purple dark:text-white">
-            {secondWinner ? formatUnits(secondWinner[0], 0).replace('.0', '') : 'Loading...'}
+            {secondWinner ? (formatUnits(secondWinner[0], 0).replace('.0', '') + '').padStart(4, '0') : 'Loading...'}
           </div>
         </div>
         <div>
           <div className="text-purple-light">อันดับ 3</div>
           <div className="text-base text-purple dark:text-white">
-            {thirdWinner ? formatUnits(thirdWinner[0], 0).replace('.0', '') : 'Loading...'}
+            {thirdWinner ? (formatUnits(thirdWinner[0], 0).replace('.0', '') + '').padStart(4, '0') : 'Loading...'}
           </div>
         </div>
       </div>
