@@ -11,10 +11,6 @@ const config = [
     label: 'สลากของฉัน',
     href: '/mylottery',
   },
-  {
-    label: 'ข้อมูลธุรกรรม',
-    href: '/info',
-  },
 ]
 
 export default config

@@ -6,7 +6,6 @@ import { formatUnits } from '@ethersproject/units'
 import { THBTokenAddress } from '../../../config/constants/addresses'
 import LoginModal from './LoginModal'
 
-
 const UserBlock: React.FC = () => {
   const auth = useSelector((state: any) => state.auth)
   const [modalOpen, setModalOpen] = useState(false)
@@ -14,8 +13,8 @@ const UserBlock: React.FC = () => {
     setModalOpen(!modalOpen)
   }
 
-  const { account } = useEthers();
-  const thbBalance: any = useTokenBalance(THBTokenAddress, account);
+  const { account } = useEthers()
+  const thbBalance: any = useTokenBalance(THBTokenAddress, account)
 
   return (
     <div className="flex">
@@ -29,7 +28,7 @@ const UserBlock: React.FC = () => {
       </button>
       <div className="mx-1 px-4 py-1 text-base text-cyan-dark dark:text-cyan font-extrabold bg-gray-light dark:bg-purple flex rounded-full focus:outline-none hover:opacity-75">
         {thbBalance && `${formatUnits(thbBalance, 18)} ฿`}
-        {!thbBalance && "Loading..."}
+        {!thbBalance && 'Loading...'}
       </div>
       {modalOpen && <LoginModal setModalOpen={setModalOpen} />}
     </div>

@@ -8,7 +8,7 @@ import {
   FETCH_USER_PROFILE,
   FETCH_USER_PROFILE_SUCCESS,
   FETCH_USER_PROFILE_FAIL,
-  EDIT_USER_PROFILE
+  EDIT_USER_PROFILE,
 } from './types'
 import firebase from 'firebase'
 
@@ -19,10 +19,10 @@ export const setUserProfile = (history: any, data: any) => {
     const ref = db.collection('users').doc(currentUser.uid)
 
     await ref.set(data)
-    const profileData = await ref.get();
+    const profileData = await ref.get()
 
     history.push('/')
-    dispatch({ type: EDIT_USER_PROFILE, payload: {...currentUser, ...profileData.data()} });
+    dispatch({ type: EDIT_USER_PROFILE, payload: { ...currentUser, ...profileData.data() } })
   }
 }
 

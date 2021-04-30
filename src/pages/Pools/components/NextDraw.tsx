@@ -14,7 +14,7 @@ const NextDraw: React.FC<Props> = ({ pool }) => {
       <Card className="col-span-12 md:col-span-6 px-12 py-8">
         <TotalPotCard pool={pool} />
       </Card>
-      <Card className="col-span-12 md:col-span-6 flex space-x-6 px-12 py-8 justify-center">
+      <Card className="col-span-12 md:col-span-6 flex px-12 py-8 justify-center">
         <TicketCard pool={pool} />
       </Card>
     </div>
