@@ -1,4 +1,11 @@
 import React from 'react'
+import { useEthers, useContractCall, useContractFunction } from '@usedapp/core'
+import { Interface } from '@ethersproject/abi'
+import { formatUnits } from '@ethersproject/units'
+import { Contract } from '@ethersproject/contracts'
+
+import { LotteryAddress } from '../../../config/constants/addresses'
+import ChokchanaLotteryABI from '../../../config/abis/ChokchanaLottery.json'
 import Card from '../../../components/Card'
 import Divider from '../../../components/Divider'
 import { Pools } from '../../../config/constants/types'
@@ -8,6 +15,17 @@ type Props = {
 }
 
 const ConfigPool: React.FC<Props> = ({ pool }) => {
+  const { account, library } = useEthers()
+
+  const ChokchanaLotteryInterface = new Interface(ChokchanaLotteryABI)
+
+  const contract = new Contract(LotteryAddress, ChokchanaLotteryInterface, library?.getSigner())
+  const setNextDrawContractFunction = useContractFunction(contract, 'setNextDraw')
+
+  const handleSetNextDraw = (value: number) => {
+    setNextDrawContractFunction.send(value)
+  }
+
   return (
     <div className="grid grid-cols-12 gap-12">
       <Card className="col-span-12 md:col-span-5 flex flex-col px-12 py-8 space-y-6 items-center">
@@ -15,18 +33,6 @@ const ConfigPool: React.FC<Props> = ({ pool }) => {
         <Divider />
         <div className="w-full">
           <div className="text-xl dark:text-purple-light mb-2">ตั้งเวลางวดถัดไปออกรางวัล</div>
-          <div className="relative">
-            <input
-              type="text"
-              className="w-full px-8 py-2 text-purple-light dark:text-white text-lg font-semibold tracking-widest bg-gray-light dark:bg-purple rounded-full outline-none focus:outline-none"
-            />
-            <button className="btn absolute inset-y-0 right-0	py-2 m-1 text-white text-base text-center bg-cyan">
-              บันทึก
-            </button>
-          </div>
-        </div>
-        <div className="w-full">
-          <div className="text-xl dark:text-purple-light mb-2">ตั้งเวลาล็อกก่อนออกรางวัล</div>
           <div className="relative">
             <input
               type="text"
@@ -89,7 +95,10 @@ const ConfigPool: React.FC<Props> = ({ pool }) => {
             </button>
           </div>
         </div>
-        <button className="btn py-2 px-6 text-white text-xl text-center bg-cyan">ออกรางวัล</button>
+        <div className="w-full flex items-center justify-center space-x-4">
+          <button className="btn py-2 px-6 text-white text-xl text-center bg-cyan">ออกรางวัล</button>
+          <button className="btn py-2 px-6 text-white text-xl text-center bg-purple-light">ออกรางวัลอัตโนมัติ</button>
+        </div>
       </Card>
     </div>
   )
