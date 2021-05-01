@@ -30,10 +30,18 @@ const CheckCard: React.FC<Props> = ({ curRound }) => {
   if (roundWinner) {
     return (
       <div className="flex space-x-4">
-        <div className="flex justify-center items-center bg-cyan w-12 h-12 rounded-xl">{roundWinner[0].toString()[0] | 0}</div>
-        <div className="flex justify-center items-center bg-cyan w-12 h-12 rounded-xl">{roundWinner[0].toString()[1] | 0}</div>
-        <div className="flex justify-center items-center bg-cyan w-12 h-12 rounded-xl">{roundWinner[0].toString()[2] | 0}</div>
-        <div className="flex justify-center items-center bg-cyan w-12 h-12 rounded-xl">{roundWinner[0].toString()[3] | 0}</div>
+        <div className="flex justify-center items-center bg-cyan w-12 h-12 rounded-xl">
+          {roundWinner[0].toString()[0] | 0}
+        </div>
+        <div className="flex justify-center items-center bg-cyan w-12 h-12 rounded-xl">
+          {roundWinner[0].toString()[1] | 0}
+        </div>
+        <div className="flex justify-center items-center bg-cyan w-12 h-12 rounded-xl">
+          {roundWinner[0].toString()[2] | 0}
+        </div>
+        <div className="flex justify-center items-center bg-cyan w-12 h-12 rounded-xl">
+          {roundWinner[0].toString()[3] | 0}
+        </div>
       </div>
     )
   }
