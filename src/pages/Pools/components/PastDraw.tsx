@@ -37,13 +37,13 @@ const PastDraw: React.FC<Props> = ({ pool }) => {
   return (
     <>
       <div className="relative w-96 mx-auto">
-        <input
+        {/* <input
           type="text"
           className="w-full px-8 py-2 text-purple-light dark:text-white text-lg font-semibold tracking-widest bg-gray-light dark:bg-purple rounded-full shadow outline-none focus:outline-none"
         />
         <button className="btn absolute inset-y-0 right-0	py-2 m-1 text-white text-base text-center bg-cyan">
           ค้นหา
-        </button>
+        </button> */}
       </div>
       {resultRow}
     </>
