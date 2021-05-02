@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { useEthers, useContractFunction, useTokenAllowance } from '@usedapp/core'
@@ -30,12 +30,21 @@ const TicketCard: React.FC<Props> = ({ pool }) => {
   const tokenContract = new Contract(THBTokenAddress, THBTokenInterface, library?.getSigner())
   const approveContractFunction = useContractFunction(tokenContract, 'approve')
 
+  const [ticketNumber, setTicketNumber] = useState<any>();
+
   const handleApprove = () => {
     approveContractFunction.send(LotteryAddress, BigNumber.from('1000000000000000000000000000000000000000000000000000'))
   }
 
+  const handleLuckyNumber = () => {
+    setTicketNumber(Math.floor(Math.random() * 10000))
+  }
+
   const TicketSchema = Yup.object().shape({
-    ticketNumber: Yup.number().required('โปรดกรอกเลขที่คุณต้องการ'),
+    ticketNumber: Yup.number()
+      .required('โปรดกรอกเลขที่คุณต้องการ')
+      .min(0, 'โปรดระบุรางวัลในช่วง 0 - 9999')
+      .max(9999, 'โปรดระบุรางวัลในช่วง 0 - 9999'),
   })
 
   return (
@@ -57,12 +66,17 @@ const TicketCard: React.FC<Props> = ({ pool }) => {
               }
             }}
           >
-            {({ errors, touched }) => (
+            {({ errors, touched, handleChange }) => (
               <>
                 <Form className="flex flex-col">
                   <Field
                     name="ticketNumber"
-                    type="text"
+                    value={ticketNumber}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      handleChange(e)
+                      setTicketNumber(+ e.target.value)
+                    }}
+                    type="number"
                     className="w-full px-8 py-2 text-purple-light dark:text-white text-lg font-semibold tracking-widest bg-gray-light dark:bg-purple rounded-full outline-none focus:outline-none"
                   />
                   <button
@@ -72,7 +86,7 @@ const TicketCard: React.FC<Props> = ({ pool }) => {
                     {'ซื้อสลาก'}
                   </button>
                 </Form>
-                <ErrorMessage name="ticketNumber" className="text-white" component="div" />
+                <ErrorMessage name="ticketNumber" className="text-red-500" component="div" />
               </>
             )}
           </Formik>
@@ -88,28 +102,11 @@ const TicketCard: React.FC<Props> = ({ pool }) => {
           </button>
         )}
       </div>
-      <div className="w-full bg-gray-light dark:bg-purple font-semibold p-4 rounded-3xl">
-        <div className="text-lg text-purple dark:text-purple-light text-center">เลขคล้าย</div>
-        <div className="grid grid-cols-3 gap-8 p-8">
-          <div className="bg-purple-lightest dark:bg-purple-dark border-2 border-purple dark:border-purple-light rounded-xl p-2 tracking-widest text-center text-white dark:text-gray">
-            100110
-          </div>
-          <div className="bg-purple-lightest dark:bg-purple-dark border-2 border-purple dark:border-purple-light rounded-xl p-2 tracking-widest text-center text-white dark:text-gray">
-            100110
-          </div>
-          <div className="bg-purple-lightest dark:bg-purple-dark border-2 border-purple dark:border-purple-light rounded-xl p-2 tracking-widest text-center text-white dark:text-gray">
-            100110
-          </div>
-          <div className="bg-purple-lightest dark:bg-purple-dark border-2 border-purple dark:border-purple-light rounded-xl p-2 tracking-widest text-center text-white dark:text-gray">
-            100110
-          </div>
-          <div className="bg-purple-lightest dark:bg-purple-dark border-2 border-purple dark:border-purple-light rounded-xl p-2 tracking-widest text-center text-white dark:text-gray">
-            100110
-          </div>
-          <div className="bg-purple-lightest dark:bg-purple-dark border-2 border-purple dark:border-purple-light rounded-xl p-2 tracking-widest text-center text-white dark:text-gray">
-            100110
-          </div>
-        </div>
+      <div className="w-full flex flex-col items-center justify-center font-semibold p-4 rounded-3xl">
+        <button onClick={handleLuckyNumber}>
+          <img src={`/images/random-number.png`} alt={'สุ่มเลข'} className="w-32" />
+          <p className="text-xl dark:text-purple-light">สุ่มเลขเด็ด!</p>
+        </button>
       </div>
     </div>
   )
