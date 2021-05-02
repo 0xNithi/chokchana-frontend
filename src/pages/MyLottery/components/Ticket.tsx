@@ -40,7 +40,7 @@ const Ticket: React.FC<Props> = ({ index }) => {
       <td>{ticket && formatUnits(ticket[0].round, 0).replace('.0', '')}</td>
       <td>
         <div className="flex justify-center items-center space-x-4">
-          <img src="/images/external-lottery.png" alt="external-lottery" className="w-16" />
+          <img src="/images/chokchana-lottery.png" alt="external-lottery" className="w-16" />
           <div>สลากกินแบ่งรัฐบาล</div>
         </div>
       </td>

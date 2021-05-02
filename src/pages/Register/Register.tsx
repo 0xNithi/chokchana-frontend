@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setUserProfile } from '../../store/actions/authActions'
 import Layout from '../../components/Layout'
 import Divider from '../../components/Divider'
+import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript'
 
 const Register: React.FC = () => {
   const dispatch = useDispatch()
@@ -28,16 +29,24 @@ const Register: React.FC = () => {
       .min(2, 'ชื่อกลางต้องมีความยาวในช่วง 2 - 50 ตัวอักษรเท่านั้น')
       .max(50, 'ชื่อกลางต้องมีความยาวในช่วง 2 - 50 ตัวอักษรเท่านั้น')
       .matches(/^[ก-๙]+$/, 'ชื่อกลางต้องเป็นภาษาไทยเท่านั้น'),
-    birthDate: Yup.date().required('โปรดระบุวันเกิด'),
+    birthDate: Yup.date()
+      .required('โปรดระบุวันเกิด')
+      .test('age', 'อายุต้องอยู่ในช่วง 18 ปีบริบูรณ์ เเละไม่เกิน 120 ปีเท่านั้น', (birthdate: any) => {
+        const cutoff18 = new Date()
+        const cutoff120 = new Date()
+        cutoff18.setFullYear(cutoff18.getFullYear() - 18)
+        cutoff120.setFullYear(cutoff120.getFullYear() - 121)
+        return birthdate >= cutoff120 && birthdate <= cutoff18
+      }),
     idNumber: Yup.number()
       .required('โปรดกรอกรหัสบัตรประชาชน')
       .min(1000000000000, 'โปรดกรอกรหัสบัตรประชาชน 13 หลัก')
       .max(9999999999999, 'โปรดกรอกรหัสบัตรประชาชน 13 หลัก'),
     phoneNumber: Yup.string()
-    .min(10, 'เบอร์โทรศัพท์มือถือต้องมีความยาว 10 ตัวเท่านั้น')
-    .max(10, 'เบอร์โทรศัพท์มือถือต้องมีความยาว 10 ตัวเท่านั้น')
-    .matches(/^(06|08|09)[0-9]+$/, 'เบอร์โทรศัพท์มือถือต้องขึ้นต้นด้วย 06, 08, 09 เท่านั้น')
-    .required('โปรดกรอกเบอร์โทรศัพท์'),
+      .min(10, 'เบอร์โทรศัพท์มือถือต้องมีความยาว 10 ตัวเท่านั้น')
+      .max(10, 'เบอร์โทรศัพท์มือถือต้องมีความยาว 10 ตัวเท่านั้น')
+      .matches(/^(06|08|09)[0-9]+$/, 'เบอร์โทรศัพท์มือถือต้องขึ้นต้นด้วย 06, 08, 09 เท่านั้น')
+      .required('โปรดกรอกเบอร์โทรศัพท์'),
   })
 
   if (!auth) {
@@ -98,11 +107,8 @@ const Register: React.FC = () => {
               <div>
                 <Field
                   name="birthDate"
-                  type="text"
-                  placeholder="วันเกิด"
+                  type="date"
                   className="my-2 mx-6 w-80 h-11 px-8 py-2 text-white text-lg font-semibold bg-purple-lightest rounded-full shadow placeholder-white outline-none focus:outline-none"
-                  onMouseEnter={(e: any) => (e.currentTarget.type = 'date')}
-                  onBlur={(e: any) => (e.currentTarget.type = 'text')}
                 />
                 <ErrorMessage name="birthDate" className="text-red-600" component="div" />
               </div>

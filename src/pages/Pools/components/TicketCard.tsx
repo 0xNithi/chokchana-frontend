@@ -30,7 +30,7 @@ const TicketCard: React.FC<Props> = ({ pool }) => {
   const tokenContract = new Contract(THBTokenAddress, THBTokenInterface, library?.getSigner())
   const approveContractFunction = useContractFunction(tokenContract, 'approve')
 
-  const [ticketNumber, setTicketNumber] = useState<any>();
+  const [ticketNumber, setTicketNumber] = useState<any>()
 
   const handleApprove = () => {
     approveContractFunction.send(LotteryAddress, BigNumber.from('1000000000000000000000000000000000000000000000000000'))
@@ -74,7 +74,7 @@ const TicketCard: React.FC<Props> = ({ pool }) => {
                     value={ticketNumber}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       handleChange(e)
-                      setTicketNumber(+ e.target.value)
+                      setTicketNumber(+e.target.value)
                     }}
                     type="number"
                     className="w-full px-8 py-2 text-purple-light dark:text-white text-lg font-semibold tracking-widest bg-gray-light dark:bg-purple rounded-full outline-none focus:outline-none"
