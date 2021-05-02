@@ -51,7 +51,18 @@ const MyLottery: React.FC = () => {
                 <th>สถานะ</th>
               </tr>
             </thead>
-            <tbody className="text-lg dark:text-white">{ticketRow}</tbody>
+            <tbody className="text-lg dark:text-white">
+              {ticketRow}
+              {!ticketRow.length && (
+                <tr className="h-24">
+                  <td colSpan={4}>
+                    {!account && 'โปรดเชื่อมต่อกระเป๋า'}
+                    {account && !ticketBalance && <div className="animate-pulse ">กำลังโหลด...</div>}
+                    {numTicket == '0' && 'ท่านยังไม่ได้สลากสลาก'}
+                  </td>
+                </tr>
+              )}
+            </tbody>
           </table>
         </Card>
       </div>

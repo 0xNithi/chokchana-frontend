@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
-import { useEthers, useContractFunction, useTokenAllowance } from '@usedapp/core'
+import { useEthers, useContractCall, useContractFunction, useTokenAllowance } from '@usedapp/core'
 import { BigNumber } from 'ethers'
+import { formatUnits } from '@ethersproject/units'
 import { Interface } from '@ethersproject/abi'
 import { Contract } from '@ethersproject/contracts'
 
@@ -19,6 +20,8 @@ type Props = {
 
 const TicketCard: React.FC<Props> = ({ pool }) => {
   const { account, library } = useEthers()
+  const [timestamp, setTimestamp] = useState(0)
+  const [canBuy, setCanBuy] = useState(false)
 
   const ChokchanaLotteryInterface = new Interface(ChokchanaLotteryABI)
   const THBTokenInterface = new Interface(THBTokenABI)
@@ -30,14 +33,45 @@ const TicketCard: React.FC<Props> = ({ pool }) => {
   const tokenContract = new Contract(THBTokenAddress, THBTokenInterface, library?.getSigner())
   const approveContractFunction = useContractFunction(tokenContract, 'approve')
 
-  const [ticketNumber, setTicketNumber] = useState<any>();
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      const _timestamp = +(+new Date() + '').substring(0, 10)
+      setTimestamp(_timestamp)
+      if (canBuyTime) {
+        console.log('can buy: ', getCanBuy())
+        setCanBuy(getCanBuy())
+      }
+    }, 1000)
+
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [timestamp])
+
+  const canBuyTime: any = useContractCall(
+    account && {
+      abi: ChokchanaLotteryInterface,
+      address: LotteryAddress,
+      method: 'getCanBuyTime',
+      args: [],
+    },
+  )
 
   const handleApprove = () => {
     approveContractFunction.send(LotteryAddress, BigNumber.from('1000000000000000000000000000000000000000000000000000'))
   }
 
-  const handleLuckyNumber = () => {
-    setTicketNumber(Math.floor(Math.random() * 10000))
+  const luckyNumber = () => {
+    return Math.floor(Math.random() * 10000)
+  }
+
+  const getCanBuy = () => {
+    const _canBuyTime = +formatUnits(canBuyTime[0], 0)
+    const secondsLeft = _canBuyTime - timestamp
+    if ((secondsLeft && secondsLeft < 0) || !secondsLeft) {
+      return false
+    }
+    return true
   }
 
   const TicketSchema = Yup.object().shape({
@@ -66,27 +100,38 @@ const TicketCard: React.FC<Props> = ({ pool }) => {
               }
             }}
           >
-            {({ errors, touched, handleChange }) => (
+            {({ errors, touched, handleChange, values, setFieldValue }) => (
               <>
                 <Form className="flex flex-col">
-                  <Field
-                    name="ticketNumber"
-                    value={ticketNumber}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      handleChange(e)
-                      setTicketNumber(+ e.target.value)
-                    }}
-                    type="number"
-                    className="w-full px-8 py-2 text-purple-light dark:text-white text-lg font-semibold tracking-widest bg-gray-light dark:bg-purple rounded-full outline-none focus:outline-none"
-                  />
-                  <button
-                    type="submit"
-                    className="btn absolute inset-y-0 right-0	py-2 m-1 text-white text-base text-center bg-cyan"
-                  >
-                    {'ซื้อสลาก'}
-                  </button>
+                  {canBuy ? (
+                    <>
+                      <Field
+                        name="ticketNumber"
+                        type="number"
+                        className="w-full px-8 py-2 text-purple-light dark:text-white text-lg font-semibold tracking-widest bg-gray-light dark:bg-purple rounded-full outline-none focus:outline-none"
+                      />
+                      <button
+                        type="submit"
+                        className="btn absolute h-9 inset-y-0 right-0	py-2 m-1 text-white text-base text-center bg-cyan disabled:opacity-50"
+                      >
+                        {'ซื้อสลาก'}
+                      </button>{' '}
+                    </>
+                  ) : (
+                    <div className="text-xl text-white">สลากไม่อยู่ในช่วงที่สามารถซื้อได้</div>
+                  )}
                 </Form>
                 <ErrorMessage name="ticketNumber" className="text-red-500" component="div" />
+                <div className="w-full flex flex-col items-center justify-center font-semibold p-4 rounded-3xl">
+                  <button
+                    onClick={() => {
+                      setFieldValue('ticketNumber', luckyNumber() + '', true)
+                    }}
+                  >
+                    <img src={`/images/random-number.png`} alt={'สุ่มเลข'} className="w-32" />
+                    <p className="text-xl dark:text-purple-light">สุ่มเลขเด็ด!</p>
+                  </button>
+                </div>
               </>
             )}
           </Formik>
@@ -101,12 +146,6 @@ const TicketCard: React.FC<Props> = ({ pool }) => {
             {'Approve'}
           </button>
         )}
-      </div>
-      <div className="w-full flex flex-col items-center justify-center font-semibold p-4 rounded-3xl">
-        <button onClick={handleLuckyNumber}>
-          <img src={`/images/random-number.png`} alt={'สุ่มเลข'} className="w-32" />
-          <p className="text-xl dark:text-purple-light">สุ่มเลขเด็ด!</p>
-        </button>
       </div>
     </div>
   )

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useEthers, useContractCall } from '@usedapp/core'
+import { useContractCall } from '@usedapp/core'
 import { Interface } from '@ethersproject/abi'
 import { formatUnits } from '@ethersproject/units'
 
