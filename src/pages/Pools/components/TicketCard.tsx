@@ -57,14 +57,12 @@ const TicketCard: React.FC<Props> = ({ pool }) => {
     },
   )
 
-  const [ticketNumber, setTicketNumber] = useState<any>(0)
-
   const handleApprove = () => {
     approveContractFunction.send(LotteryAddress, BigNumber.from('1000000000000000000000000000000000000000000000000000'))
   }
 
-  const handleLuckyNumber = () => {
-    setTicketNumber(Math.floor(Math.random() * 10000))
+  const luckyNumber = () => {
+    return Math.floor(Math.random() * 10000)
   }
 
   const getCanBuy = () => {
@@ -94,33 +92,27 @@ const TicketCard: React.FC<Props> = ({ pool }) => {
               ticketNumber: '',
             }}
             validationSchema={TicketSchema}
-            onSubmit={() => {
+            onSubmit={(values) => {
               if (allowance && !allowance.isZero()) {
-                buyTicketContractFunction.send(ticketNumber)
-                setTicketNumber('')
+                buyTicketContractFunction.send(values.ticketNumber)
               } else {
                 console.log('Allow!')
               }
             }}
           >
-            {({ errors, touched, handleChange }) => (
+            {({ errors, touched, handleChange, values, setFieldValue }) => (
               <>
                 <Form className="flex flex-col">
                   {canBuy ? (
                     <>
                       <Field
                         name="ticketNumber"
-                        value={ticketNumber}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                          handleChange(e)
-                          setTicketNumber(+e.target.value)
-                        }}
                         type="number"
                         className="w-full px-8 py-2 text-purple-light dark:text-white text-lg font-semibold tracking-widest bg-gray-light dark:bg-purple rounded-full outline-none focus:outline-none"
                       />
                       <button
                         type="submit"
-                        className="btn absolute inset-y-0 right-0	py-2 m-1 text-white text-base text-center bg-cyan disabled:opacity-50"
+                        className="btn absolute h-9 inset-y-0 right-0	py-2 m-1 text-white text-base text-center bg-cyan disabled:opacity-50"
                       >
                         {'ซื้อสลาก'}
                       </button>{' '}
@@ -131,7 +123,11 @@ const TicketCard: React.FC<Props> = ({ pool }) => {
                 </Form>
                 <ErrorMessage name="ticketNumber" className="text-red-500" component="div" />
                 <div className="w-full flex flex-col items-center justify-center font-semibold p-4 rounded-3xl">
-                  <button onClick={handleLuckyNumber}>
+                  <button
+                    onClick={() => {
+                      setFieldValue('ticketNumber', luckyNumber() + '', true)
+                    }}
+                  >
                     <img src={`/images/random-number.png`} alt={'สุ่มเลข'} className="w-32" />
                     <p className="text-xl dark:text-purple-light">สุ่มเลขเด็ด!</p>
                   </button>
