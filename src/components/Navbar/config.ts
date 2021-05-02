@@ -1,11 +1,11 @@
 const config = [
   {
     label: 'ซื้อสลาก',
-    href: '/pools',
+    href: '/pools/1',
   },
   {
     label: 'ตรวจสลาก',
-    href: '/check',
+    href: '/pools/1/history',
   },
   {
     label: 'สลากของฉัน',

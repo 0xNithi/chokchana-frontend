@@ -3,7 +3,7 @@ import MenuCard from './MenuCard'
 
 const BuyLottoryCard: React.FC = () => {
   return (
-    <MenuCard to="/pools">
+    <MenuCard to="/pools/1">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="max-h-24 max-w-24">
         <linearGradient id="linear-gradient">
           <stop offset="0" stopColor="#12bee5" />

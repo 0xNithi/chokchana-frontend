@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink, Switch, Route, useRouteMatch, useParams } from 'react-router-dom'
+import { useEthers } from '@usedapp/core'
 import Hero from './components/Hero'
 import Layout from '../../components/Layout'
 import Divider from '../../components/Divider'
@@ -7,6 +8,7 @@ import NextDraw from './components/NextDraw'
 import PastDraw from './components/PastDraw'
 import PoolConfig from './components/PoolConfig'
 import NotFound from '../NotFound'
+import { AdminWallet } from '../../config/constants/addresses'
 import { Pools } from '../../config/constants/types'
 
 type Props = {
@@ -18,6 +20,8 @@ type Params = {
 }
 
 const PoolPage: React.FC<Props> = ({ pools }) => {
+  const { account } = useEthers()
+
   const match = useRouteMatch()
   const { poolId }: Params = useParams()
   const pool = pools.find((pool) => pool.id === Number(poolId))
@@ -45,14 +49,16 @@ const PoolPage: React.FC<Props> = ({ pools }) => {
               >
                 งวดที่แล้ว
               </NavLink>
-              <NavLink
-                className={`px-4 py-1 rounded-full outline-none focus:outline-none`}
-                activeClassName="bg-purple-light text-gray-light"
-                exact
-                to={`/pools/${poolId}/config`}
-              >
-                ตั้งค่า
-              </NavLink>
+              {account && AdminWallet.includes(account) && (
+                <NavLink
+                  className={`px-4 py-1 rounded-full outline-none focus:outline-none`}
+                  activeClassName="bg-purple-light text-gray-light"
+                  exact
+                  to={`/pools/${poolId}/config`}
+                >
+                  ตั้งค่า
+                </NavLink>
+              )}
             </div>
           </div>
           <Divider />

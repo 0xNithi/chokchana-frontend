@@ -184,7 +184,7 @@ const ConfigPool: React.FC<Props> = ({ pool }) => {
           validateOnChange
           initialValues={{
             nextDraw,
-            lockBeforeDraw
+            lockBeforeDraw,
           }}
           validationSchema={TimingSchema}
           onSubmit={() => {}} // Do Nothing

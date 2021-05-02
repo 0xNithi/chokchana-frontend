@@ -26,10 +26,13 @@ const UserBlock: React.FC = () => {
         <span className="sr-only">Open user menu</span>
         {auth ? auth.displayName : 'เข้าสู่ระบบ / ลงทะเบียน'}
       </button>
-      <div className="mx-1 px-4 py-1 text-base text-cyan-dark dark:text-cyan font-extrabold bg-gray-light dark:bg-purple flex rounded-full focus:outline-none hover:opacity-75">
-        {thbBalance && `${formatUnits(thbBalance, 18)} ฿`}
-        {!thbBalance && 'Loading...'}
-      </div>
+      {auth && (
+        <div className="mx-1 px-4 py-1 text-base text-cyan-dark dark:text-cyan font-extrabold bg-gray-light dark:bg-purple flex rounded-full focus:outline-none hover:opacity-75">
+          {thbBalance && `${formatUnits(thbBalance, 18)} ฿`}
+          {!account && 'โปรดเชื่อมต่อกระเป๋า'}
+          {account && !thbBalance && 'กำลังโหลด...'}
+        </div>
+      )}
       {modalOpen && <LoginModal setModalOpen={setModalOpen} />}
     </div>
   )
