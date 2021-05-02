@@ -66,7 +66,7 @@ const Ticket: React.FC<Props> = ({ ticket, ticketId }) => {
     return <div className="text-red-500 text-xl px-8 py-3 mx-auto">ไม่สามารถรับรางวัลได้</div>
   }
 
-  return <div className="text-gray-lightest text-xl px-8 py-3 mx-auto">กำลังโหลด...</div>
+  return <div className="animate-pulse text-gray-lightest text-xl px-8 py-3 mx-auto">กำลังโหลด...</div>
 }
 
 export default Ticket

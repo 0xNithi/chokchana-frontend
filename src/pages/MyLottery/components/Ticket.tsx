@@ -37,20 +37,34 @@ const Ticket: React.FC<Props> = ({ index }) => {
 
   return (
     <tr className="h-24">
-      <td>{ticket && formatUnits(ticket[0].round, 0).replace('.0', '')}</td>
       <td>
-        <div className="flex justify-center items-center space-x-4">
+        {ticket ? (
+          formatUnits(ticket[0].round, 0).replace('.0', '')
+        ) : (
+          <div className="animate-pulse bg-white rounded-xl h-6 w-8 mx-auto"></div>
+        )}
+      </td>
+      <td>
+        <div className={`${!ticket && 'animate-pulse'} flex justify-center items-center space-x-4`}>
           <img src="/images/chokchana-lottery.png" alt="external-lottery" className="w-16" />
-          <div>สลากกินแบ่งรัฐบาล</div>
+          <div>สลากโชคชนะ 4 หลัก</div>
         </div>
       </td>
       <td>
-        <div className="bg-orange text-gray-darkest text-3xl tracking-widest rounded-xl py-2 mx-4">
-          {ticket && formatUnits(ticket[0].number, 0).replace('.0', '')}
-        </div>
+        {ticket ? (
+          <div className="bg-orange text-gray-darkest text-3xl tracking-widest rounded-xl py-2 mx-4">
+            {formatUnits(ticket[0].number, 0).replace('.0', '')}
+          </div>
+        ) : (
+          <div className="animate-pulse bg-orange text-gray-darkest text-3xl tracking-widest rounded-xl py-2 mx-4 h-14"></div>
+        )}
       </td>
       <td>
-        {ticket && <TicketInteraction ticket={ticket} ticketId={formatUnits(ticketIndex[0], 0).replace('.0', '')} />}
+        {ticket ? (
+          <TicketInteraction ticket={ticket} ticketId={formatUnits(ticketIndex[0], 0).replace('.0', '')} />
+        ) : (
+          <div className="animate-pulse text-gray-lightest text-xl px-8 py-3 mx-auto">กำลังโหลด...</div>
+        )}
       </td>
     </tr>
   )
