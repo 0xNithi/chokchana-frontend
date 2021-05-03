@@ -14,5 +14,4 @@ const templateReducer = (state = initialState, action: any) => {
   }
 }
 
-
 export default templateReducer

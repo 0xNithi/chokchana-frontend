@@ -5,7 +5,7 @@ const initialState = {
   profile: null,
 }
 
-const authReducer =(state = initialState, action: any)  =>{
+const authReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case FETCH_USER:
       return action.payload || false
@@ -21,5 +21,4 @@ const authReducer =(state = initialState, action: any)  =>{
   }
 }
 
-
-export default authReducer 
+export default authReducer
