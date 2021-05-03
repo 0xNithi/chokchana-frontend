@@ -5,7 +5,6 @@ import BuyLottoryCard from './components/BuyLottoryCard'
 import ResultLottoryCard from './components/ResultLottoryCard'
 import MyLottoryCard from './components/MyLottoryCard'
 import AccountCard from './components/AccountCard'
-import TotalValueLockedCard from './components/TotalValueLockedCard'
 
 const Home: React.FC = () => {
   return (

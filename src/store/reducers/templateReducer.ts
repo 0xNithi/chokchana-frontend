@@ -4,7 +4,7 @@ const initialState = {
   text: null,
 }
 
-export default function (state = initialState, action: any) {
+const templateReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case SET_ITEM:
       console.log('set item (reducers) is called')
@@ -13,3 +13,6 @@ export default function (state = initialState, action: any) {
       return state
   }
 }
+
+
+export default templateReducer

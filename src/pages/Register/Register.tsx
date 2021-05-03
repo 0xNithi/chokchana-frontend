@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setUserProfile } from '../../store/actions/authActions'
 import Layout from '../../components/Layout'
 import Divider from '../../components/Divider'
-import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript'
 
 const Register: React.FC = () => {
   const dispatch = useDispatch()

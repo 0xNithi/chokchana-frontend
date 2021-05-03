@@ -1,17 +1,11 @@
 import { FETCH_USER, EDIT_USER_PROFILE, USER_LOGOUT } from '../actions/types'
 
-type User = {
-  photoURL: string
-  email: string
-  displayName: string
-}
-
 const initialState = {
   user: null,
   profile: null,
 }
 
-export default function (state = initialState, action: any) {
+const authReducer =(state = initialState, action: any)  =>{
   switch (action.type) {
     case FETCH_USER:
       return action.payload || false
@@ -26,3 +20,6 @@ export default function (state = initialState, action: any) {
       return state
   }
 }
+
+
+export default authReducer 

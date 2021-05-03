@@ -18,8 +18,10 @@ const rootReducer = combineReducers({
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-export default () => {
+const configureStore = () => {
   let store = createStore(persistedReducer, {}, applyMiddleware(reduxThunk))
   let persistor = persistStore(store)
   return { store, persistor }
 }
+
+export default configureStore

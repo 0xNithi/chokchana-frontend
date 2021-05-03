@@ -32,7 +32,7 @@ const PastDraw: React.FC<Props> = ({ pool }) => {
 
   useEffect(() => {
     curRound && setNumRound(formatUnits(curRound[0], 0).replace('.0', ''))
-  })
+  },[curRound])
 
   return (
     <>

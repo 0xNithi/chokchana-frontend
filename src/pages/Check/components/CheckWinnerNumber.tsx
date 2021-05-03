@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
 import { useEthers, useContractCall } from '@usedapp/core'
 import { Interface } from '@ethersproject/abi'
-import { formatUnits } from '@ethersproject/units'
 
 import { LotteryAddress } from '../../../config/constants/addresses'
 import ChokchanaLotteryABI from '../../../config/abis/ChokchanaLottery.json'
-import Card from '../../../components/Card'
-import { Pools } from '../../../config/constants/types'
 
 type Props = {
   curRound: any

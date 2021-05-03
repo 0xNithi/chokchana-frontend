@@ -33,21 +33,6 @@ const TicketCard: React.FC<Props> = ({ pool }) => {
   const tokenContract = new Contract(THBTokenAddress, THBTokenInterface, library?.getSigner())
   const approveContractFunction = useContractFunction(tokenContract, 'approve')
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      const _timestamp = +(+new Date() + '').substring(0, 10)
-      setTimestamp(_timestamp)
-      if (canBuyTime) {
-        console.log('can buy: ', getCanBuy())
-        setCanBuy(getCanBuy())
-      }
-    }, 1000)
-
-    return () => {
-      clearTimeout(timeout)
-    }
-  }, [timestamp])
-
   const canBuyTime: any = useContractCall(
     account && {
       abi: ChokchanaLotteryInterface,
@@ -57,21 +42,28 @@ const TicketCard: React.FC<Props> = ({ pool }) => {
     },
   )
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      const _timestamp = +(+new Date() + '').substring(0, 10)
+      setTimestamp(_timestamp)
+      if (canBuyTime) {
+        const _canBuyTime = +formatUnits(canBuyTime[0], 0)
+        const secondsLeft = _canBuyTime - timestamp
+        setCanBuy(!((secondsLeft && secondsLeft < 0) || !secondsLeft))
+      }
+    }, 1000)
+
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [timestamp, canBuyTime])
+
   const handleApprove = () => {
     approveContractFunction.send(LotteryAddress, BigNumber.from('1000000000000000000000000000000000000000000000000000'))
   }
 
   const luckyNumber = () => {
     return Math.floor(Math.random() * 10000)
-  }
-
-  const getCanBuy = () => {
-    const _canBuyTime = +formatUnits(canBuyTime[0], 0)
-    const secondsLeft = _canBuyTime - timestamp
-    if ((secondsLeft && secondsLeft < 0) || !secondsLeft) {
-      return false
-    }
-    return true
   }
 
   const TicketSchema = Yup.object().shape({

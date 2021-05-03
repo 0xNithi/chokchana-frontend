@@ -48,6 +48,7 @@ const LoginModal: React.FC<Props> = ({ setModalOpen }) => {
                 ? auth.photoURL
                 : 'https://www.southbankprestigeservicecentre.com.au/wp-content/uploads/2018/10/blank-profile.png'
             }
+            alt="profile"
           />
           <p className="mb-4 text-base text-cyan-dark dark:text-cyan">ชื่อผู้ใช้งาน: {auth.displayName}</p>
           {account && (

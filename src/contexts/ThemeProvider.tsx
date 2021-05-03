@@ -46,7 +46,7 @@ const ThemeProvider: React.FC = ({ children }) => {
 
   React.useEffect(() => {
     setComponentMounted(true)
-  })
+  }, [])
 
   const toggleTheme = () => themeDispatch({ type: 'TOGGLE_THEME' })
 

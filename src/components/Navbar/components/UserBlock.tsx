@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useEthers, useTokenBalance } from '@usedapp/core'
 import { formatUnits } from '@ethersproject/units'
