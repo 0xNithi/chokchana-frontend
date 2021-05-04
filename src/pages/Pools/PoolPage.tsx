@@ -66,9 +66,11 @@ const PoolPage: React.FC<Props> = ({ pools }) => {
             <Route path={`${match.path}/history`}>
               <PastDraw pool={pool} />
             </Route>
-            <Route path={`${match.path}/config`}>
-              <PoolConfig pool={pool} />
-            </Route>
+            {account && AdminWallet.includes(account) && (
+              <Route path={`${match.path}/config`}>
+                <PoolConfig pool={pool} />
+              </Route>
+            )}
             <Route>
               <NextDraw pool={pool} />
             </Route>
