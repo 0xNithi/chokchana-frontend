@@ -29,7 +29,7 @@ const Register: React.FC = () => {
       .max(50, 'ชื่อกลางต้องมีความยาวในช่วง 2 - 50 ตัวอักษรเท่านั้น')
       .matches(/^[ก-๙]+$/, 'ชื่อกลางต้องเป็นภาษาไทยเท่านั้น'),
     birthDate: Yup.date()
-      .required('โปรดระบุวันเกิด')
+      .required('โปรดระบุวันเกิดให้ถูกต้อง')
       .test('age', 'อายุต้องอยู่ในช่วง 18 ปีบริบูรณ์ เเละไม่เกิน 120 ปีเท่านั้น', (birthdate: any) => {
         const cutoff18 = new Date()
         const cutoff120 = new Date()
