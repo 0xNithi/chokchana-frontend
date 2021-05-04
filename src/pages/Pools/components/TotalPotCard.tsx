@@ -29,13 +29,13 @@ const TotalPotCard: React.FC<Props> = ({ pool }) => {
             <>
               <div className="text-base text-purple-dark dark:text-purple-light">งวดที่ {`${curRound}`}</div>
               <div className="text-xl text-purple-dark dark:text-purple-light">เงินรางวัลรวม</div>
-              <div className="text-xl dark:text-gray-light">{(1000000).toLocaleString('en-US')} THB</div>
+              <div className="text-xl dark:text-gray-light">{(1800000).toLocaleString('en-US')} THB</div>
             </>
           ) : (
             <div className="space-y-2">
               <div className="animate-pulse bg-purple-light rounded-xl w-16 h-4"></div>
               <div className="animate-pulse bg-purple-light rounded-xl w-32 h-6"></div>
-              <div className="animate-pulse bg-white rounded-xl w-36 h-6"></div>
+              <div className="animate-pulse bg-gray dark:bg-white rounded-xl w-36 h-6"></div>
             </div>
           )}
         </div>
