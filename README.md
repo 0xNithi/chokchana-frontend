@@ -85,7 +85,7 @@
    ```
 4. build โปรแกรมเพื่อนำไป deploy ที่อื่น
    ```sh
-   yarn start
+   yarn build
    ```
 
 ### Built With
